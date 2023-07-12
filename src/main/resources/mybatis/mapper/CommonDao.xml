@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 다시작성 : bhs -->
+<mapper namespace="com.ezen.phonefly2.dao.ICommonDao">
+
+	<select id="getNoticeList" resultType="com.ezen.phonefly2.dto.NoticeVO">
+		SELECT * FROM (SELECT * FROM (SELECT ROWNUM rn, N.* FROM (
+		SELECT * FROM notice ORDER BY nseq DESC) N) WHERE rn &gt;= #{startNum}) WHERE rn &lt;= #{endNum}
+	</select>
+
+	<select id="getNotice" resultType="com.ezen.phonefly2.dto.NoticeVO">
+		SELECT * FROM notice WHERE nseq = #{param1}
+	</select>
+
+	<select id="getAllCount" resultType="_int">
+		SELECT COUNT(*) FROM ${param1}
+	</select>
+
+	<select id="getEventList" resultType="com.ezen.phonefly2.dto.EventVO">
+		SELECT * FROM (SELECT * FROM (SELECT ROWNUM rn, E.* FROM (
+		SELECT * FROM event ORDER BY eseq DESC) E) WHERE rn &gt;= #{startNum}) WHERE rn &lt;= #{endNum}
+	</select>
+
+	<select id="getEvent" resultType="com.ezen.phonefly2.dto.EventVO">
+		SELECT * FROM event WHERE eseq = #{param1}
+	</select>
+	
+	<insert id="insertNotice" parameterType="com.ezen.phonefly2.dto.NoticeVO" >
+		insert into notice ( nseq, subject , content) 
+		        values( nseq.nextVal, #{subject}, #{content})
+	</insert>
+
+
+	<update id="updateNotice" parameterType="com.ezen.phonefly2.dto.NoticeVO">
+		update notice set subject=#{subject},content=#{content} where nseq=#{nseq}
+	</update>
+	
+	<delete id = "deleteNotice">
+		delete from notice where nseq=#{param1}
+	</delete>
+	
+	<insert id="insertEvent" parameterType="com.ezen.phonefly2.dto.EventVO" >
+		insert into event ( eseq, subject , image) 
+		        values( eseq.nextVal, #{subject}, #{image})
+	</insert>
+	
+	<update id="updateEvent" parameterType="com.ezen.phonefly2.dto.EventVO">
+		update event set subject=#{subject},image=#{image} where eseq=#{eseq}
+	</update>
+	
+	<delete id = "deleteEvent">
+		delete from event where eseq=#{param1}
+	</delete>
+</mapper>

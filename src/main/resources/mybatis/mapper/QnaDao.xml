@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 다시작성 : bhs -->
+<mapper namespace="com.ezen.phonefly2.dao.IQnaDao">
+
+	<select id="getAllCountById" resultType="_int">
+		SELECT COUNT(*) FROM qna WHERE id = #{param1}
+	</select>
+
+	<select id="qnaList" resultType="com.ezen.phonefly2.dto.QnaVO">
+		SELECT * FROM (SELECT * FROM (SELECT ROWNUM rn, Q.* FROM (
+		SELECT * FROM qna WHERE id = #{param2} ORDER BY qseq DESC) Q) WHERE rn &gt;= #{param1.startNum}) WHERE rn &lt;= #{param1.endNum}
+	</select>
+
+	<select id="getQna" resultType="com.ezen.phonefly2.dto.QnaVO">
+		SELECT * FROM qna WHERE qseq = #{param1}
+	</select>
+
+	<insert id="qnaWrite" parameterType="com.ezen.phonefly2.dto.QnaVO">
+		INSERT INTO qna (qseq, id, subject, content) VALUES (qseq.nextVal, #{id}, #{subject}, #{content})
+	</insert>
+
+	<update id="qnaUpdate" parameterType="com.ezen.phonefly2.dto.QnaVO">
+		UPDATE qna SET subject = #{subject}, content = #{content} where qseq = #{qseq}
+	</update>
+
+	<delete id="qnaDelete" parameterType="com.ezen.phonefly2.dto.QnaVO">
+		DELETE FROM qna WHERE qseq = #{param1}
+	</delete>
+
+</mapper>

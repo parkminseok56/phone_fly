@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- author : bhs -->
+<mapper namespace="com.ezen.phonefly2.dao.IMyPageDao">
+
+	<select id="getReviewList" resultType="com.ezen.phonefly2.dto.ReviewVO">
+		SELECT * FROM (SELECT * FROM (SELECT ROWNUM rn, N.* FROM (
+		SELECT * FROM review_for_member_view ORDER BY rvseq DESC) N) WHERE rn &gt;= #{startNum}) WHERE rn &lt;= #{endNum}
+	</select>
+
+	<update id="updateReview" parameterType="com.ezen.phonefly2.dto.ReviewVO">
+		UPDATE review SET content=#{content} WHERE rvseq = #{rvseq}
+	</update>
+
+	<delete id="deleteReview">
+		DELETE FROM review WHERE rvseq = #{param1}
+	</delete>
+
+	<select id="getOrderList" resultType="com.ezen.phonefly2.dto.OrderDetailVO">
+		SELECT * FROM (SELECT * FROM (SELECT ROWNUM rn, O.* FROM (
+		SELECT * FROM order_detail_view2 WHERE id = #{param2} ORDER BY odseq DESC) O) WHERE rn &gt;= #{param1.startNum}) WHERE rn &lt;= #{param1.endNum}
+	</select>
+
+	<select id="getOrderDetail" resultType="com.ezen.phonefly2.dto.OrderDetailVO">
+		SELECT * FROM order_detail_view2 WHERE odseq = #{param1} AND id = #{param2}
+	</select>
+
+	<select id="adminOrderDetail" resultType="com.ezen.phonefly2.dto.OrderDetailVO">
+		SELECT * FROM order_detail_view2 WHERE odseq = #{param1}
+	</select>
+
+	<delete id="deleteOrder">
+		DELETE FROM order_detail WHERE odseq = #{param1}
+	</delete>
+
+	<insert id="insertOrder" parameterType="com.ezen.phonefly2.dto.OrderDetailVO">
+		INSERT INTO order_detail (odseq, pseq, rseq, discount, buyplan, dcmonth, dctotal, mmonth, mtotal, cc, id, cseq) VALUES (odseq.nextVal, #{pseq}, #{rseq}, #{discount}, #{buyplan}, #{dcmonth}, #{dctotal}, #{mmonth}, #{mtotal}, #{cc}, #{id}, #{cseq})
+	</insert>
+	
+	<update id="adminOrderUpdate">
+		update order_detail set result = #{param1}  where odseq= #{param2}
+	</update>
+
+</mapper>
