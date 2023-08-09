@@ -1,4 +1,4 @@
-# Phone fly 팀 프로젝트
+## Phone fly 팀 프로젝트
 
 ## 주제 및 목적
 
