@@ -7,7 +7,9 @@
 </p>
 
 ## 밴치마킹 사이트
-
+<p align="center">
+ <img src="https://github.com/parkminseok56/phone_fly/assets/133790403/5a66702c-dce0-45ba-bbf6-aead6ce58b20"width="1000">
+</p>
 
 ## 요구 사항 분석
 
@@ -38,9 +40,7 @@
   - MyBatis
 
 ## 분할구조도
-<p align="center">
- <img src="https://github.com/parkminseok56/phone_fly/assets/133790403/5a66702c-dce0-45ba-bbf6-aead6ce58b20"width="1000">
-</p>
+
 
 ## 시퀀스 다이어그램
 ![image](https://github.com/parkminseok56/phone_fly/assets/133790403/e7d06bdf-4c32-41b6-897c-0ecabbe5df8a)
