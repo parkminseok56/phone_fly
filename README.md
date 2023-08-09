@@ -68,9 +68,9 @@
 
 ## 분할구조도
 
-- 사용자(https://github.com/parkminseok56/phone_fly/issues/4)
+ - 사용자(https://github.com/parkminseok56/phone_fly/issues/4)
 
-- 관리자(https://github.com/parkminseok56/phone_fly/issues/5)
+ - 관리자(https://github.com/parkminseok56/phone_fly/issues/5)
 
 ## 시퀀스 다이어그램
 
