@@ -20,12 +20,12 @@
   -Bootstrap
 
 - 백앤드
-  -Oracle 11g v11.2.0.2.0
-  -Java v1.8.0_371
+  - Oracle 11g v11.2.0.2.0
+  - Java v1.8.0_371
   
 - 프레임워크 
-  -Springboot
-  -MyBatis
+  - Springboot
+  - MyBatis
 
 
 
