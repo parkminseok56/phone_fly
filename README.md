@@ -74,7 +74,13 @@
   - MyBatis
 
 ## 분할구조도
+<p align="center">
+ <img src="https://github.com/parkminseok56/phone_fly/assets/133790403/4a3987b8-8311-4b7f-a5f9-513a5a55cbd5"width="1000">
+</p>
 
+<p align="center">
+ <img src="https://github.com/parkminseok56/phone_fly/assets/133790403/707e578c-73dc-4470-b750-9d65ecefaacc"width="1000">
+</p>
 
 ## 시퀀스 다이어그램
 ![image](https://github.com/parkminseok56/phone_fly/assets/133790403/e7d06bdf-4c32-41b6-897c-0ecabbe5df8a)
