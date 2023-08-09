@@ -48,6 +48,10 @@
 
 ## 작업 일정
 
+<p align="center">
+ <img src="https://github.com/parkminseok56/phone_fly/assets/133790403/fd98296e-6fe4-403c-a22d-28efc92a8879"width="1000">
+</p>
+
 
 ## 개발 환경
 
