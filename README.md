@@ -88,7 +88,7 @@
 </p>
 
 <p align="center">
- <img src="https://github.com/parkminseok56/phone_fly/assets/133790403/9e553be0-7de4-44f0-9cef-baa44d7be7c0"width="1000">
+ <img src="https://github.com/parkminseok56/phone_fly/assets/133790403/2005abf6-fe19-4878-9a21-8498e747a2f1"width="1000">
 </p>
 
 <p align="center">
