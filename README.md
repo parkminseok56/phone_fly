@@ -3,7 +3,7 @@
 ## 주제 및 목적
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/dialogflow/resources/master/images/overview.png" width="1000">
+  <img src="https://github.com/parkminseok56/phone_fly/assets/133790403/29f639b2-2108-41f4-82bc-d8957781248a" width="1000">
 </p>
 
 
