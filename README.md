@@ -38,7 +38,7 @@
   - MyBatis
 
 ## 분할구조도
-
+https://github.com/parkminseok56/phone_fly/assets/133790403/5a66702c-dce0-45ba-bbf6-aead6ce58b20
 
 ## 시퀀스 다이어그램
 ![image](https://github.com/parkminseok56/phone_fly/assets/133790403/e7d06bdf-4c32-41b6-897c-0ecabbe5df8a)
