@@ -7,9 +7,11 @@
 </p>
 
 ## 밴치마킹 사이트
-<p align="center">
- <img src="https://github.com/parkminseok56/phone_fly/assets/133790403/5a66702c-dce0-45ba-bbf6-aead6ce58b20"width="1000">
-</p>
+
+  - 스마트투데이(http://smatoday.co.kr/main/main.html) : 제품 비교기능 
+  - 오늘의 폰(https://www.todayphone.net/) : 제품 상세 페이지, 메뉴 구성
+  - 애플(https://www.apple.com/kr/iphone/) : 디자인 및 기능
+  - 삼성(https://www.samsung.com/sec/smartphones/) : 제품 컬러 선택 기능/ 비교 선택 및  저장 기능
 
 ## 요구 사항 분석
 
@@ -48,6 +50,7 @@
 
 ## 작업 일정
 
+- 2023.05.16 ~ 06.02
 <p align="center">
  <img src="https://github.com/parkminseok56/phone_fly/assets/133790403/fd98296e-6fe4-403c-a22d-28efc92a8879"width="1000">
 </p>
