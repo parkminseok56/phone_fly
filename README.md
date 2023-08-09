@@ -1,4 +1,4 @@
-![image](https://github.com/parkminseok56/phone_fly/assets/133790403/007016ce-9245-4752-b67d-3e783cf6ab1b)# Phone fly 팀 프로젝트
+# Phone fly 팀 프로젝트
 
 ## 주제 및 목적
 
