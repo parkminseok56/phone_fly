@@ -108,12 +108,27 @@
 </p>
 
 ## DB 설계
-![image](https://github.com/parkminseok56/phone_fly/assets/133790403/6da8564b-d6ed-4863-b32c-54b2aa877bea)
+<p align="center">
+ <img src="https://github.com/parkminseok56/phone_fly/assets/133790403/4a9e6e08-c13e-492b-ad13-61effc8f0cc5"width="1000">
+</p>
 
 
 ## 기능정의서
-![image](https://github.com/parkminseok56/phone_fly/assets/133790403/7a604b60-f8c2-4ac8-9241-0717e28dec06)
+<p align="center">
+ <img src="https://github.com/parkminseok56/phone_fly/assets/133790403/e69e113b-f32d-435b-9f24-01cf9057d455"width="1000">
+</p>
 
+<p align="center">
+ <img src="https://github.com/parkminseok56/phone_fly/assets/133790403/85223fcb-5ce8-4202-a912-a6ee9dac55b5"width="1000">
+</p>
+
+<p align="center">
+ <img src="https://github.com/parkminseok56/phone_fly/assets/133790403/a4d1af24-aa9a-4de0-8d67-d7da3c95886d"width="1000">
+</p>
+
+<p align="center">
+ <img src="https://github.com/parkminseok56/phone_fly/issues/14#issue-1842737440"width="1000">
+</p>
 
 
 
