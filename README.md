@@ -83,26 +83,18 @@
 -관리자(https://github.com/parkminseok56/phone_fly/issues/5)
 
 ## 시퀀스 다이어그램
-<p align="center">
- <img src="https://github.com/parkminseok56/phone_fly/assets/133790403/9e553be0-7de4-44f0-9cef-baa44d7be7c0"width="1000">
-</p>
 
-<p align="center">
- <img src="https://github.com/parkminseok56/phone_fly/assets/133790403/2005abf6-fe19-4878-9a21-8498e747a2f1"width="1000">
-</p>
+- 비회원(https://github.com/parkminseok56/phone_fly/issues/6)
 
-<p align="center">
- <img src="https://github.com/parkminseok56/phone_fly/assets/133790403/18b9c231-f0e9-484c-8eac-80102fb5caed"width="1000">
-</p>
+- 회원_구매(https://github.com/parkminseok56/phone_fly/issues/7)
 
-<p align="center">
- <img src="https://github.com/parkminseok56/phone_fly/assets/133790403/65d3157c-ad28-4c57-85c3-c26217fd332e"width="1000">
-</p>
+- 회원_구매 이 외 (https://github.com/parkminseok56/phone_fly/issues/8)
+
+- 공통(https://github.com/parkminseok56/phone_fly/issues/9)
+
+- 관리자(https://github.com/parkminseok56/phone_fly/issues/10)
 
 
-<p align="center">
- <img src="https://github.com/parkminseok56/phone_fly/assets/133790403/4a9e6e08-c13e-492b-ad13-61effc8f0cc5"width="1000">
-</p>
 
 ## DB 설계
 <p align="center">
