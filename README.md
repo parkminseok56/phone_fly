@@ -98,21 +98,13 @@
 
 
 ## 기능정의서
-<p align="center">
- <img src="https://github.com/parkminseok56/phone_fly/assets/133790403/e69e113b-f32d-435b-9f24-01cf9057d455"width="1000">
-</p>
+- 공통(https://github.com/parkminseok56/phone_fly/issues/11)
 
-<p align="center">
- <img src="https://github.com/parkminseok56/phone_fly/assets/133790403/85223fcb-5ce8-4202-a912-a6ee9dac55b5"width="1000">
-</p>
+- 비회원(https://github.com/parkminseok56/phone_fly/issues/12)
 
-<p align="center">
- <img src="https://github.com/parkminseok56/phone_fly/assets/133790403/a4d1af24-aa9a-4de0-8d67-d7da3c95886d"width="1000">
-</p>
+- 회원https://github.com/parkminseok56/phone_fly/issues/13)
 
-<p align="center">
- <img src="https://github.com/parkminseok56/phone_fly/issues/14#issue-1842737440"width="1000">
-</p>
+- 관리자(https://github.com/parkminseok56/phone_fly/issues/14)
 
 
 
