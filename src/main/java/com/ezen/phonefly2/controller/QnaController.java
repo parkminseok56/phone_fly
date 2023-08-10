@@ -23,107 +23,47 @@ import com.ezen.phonefly2.util.Paging;
 
 @Controller
 public class QnaController {
-	// 다시 작성 : bhs
+	
+    //  Q&A 관련 기능을 처리하는 컨트롤러(Controller) 클래스입니다.
+    //	Q&A 목록 조회, Q&A 상세 보기, Q&A 작성 및 수정, Q&A 삭제 등의 기능을 처리하고 화면에 데이터를 전달합니다.
+    //	Controller 클래스에서는 각 메서드에 따라 요청에 따른 작업을 수행하고, 그 결과를 화면에 나타낼 수 있는 ModelAndView 객체에 데이터를 담아 반환합니다.
+	
+    @Autowired
+    QnaService qs;
 
-	@Autowired
-	QnaService qs;
+    @RequestMapping("qnaList")
+    public ModelAndView qnaList(HttpServletRequest request) {
+        ModelAndView mav = new ModelAndView(); // 새로운 ModelAndView 객체를 생성합니다.
+        HttpSession session = request.getSession(); // HttpSession 객체를 가져옵니다.
+        MemberVO mvo = (MemberVO) session.getAttribute("loginUser"); // "loginUser" 속성으로 저장된 MemberVO 객체를 가져옵니다.
+        String url = "member/loginForm"; // 로그인 페이지로 이동할 URL을 기본값으로 설정합니다.
+        if (mvo != null) {
+            HashMap<String, Object> result = new HashMap<>(); // 데이터를 담기 위한 HashMap 객체를 생성합니다.
+            result.put("id", mvo.getId()); // 로그인한 회원의 ID를 result에 저장합니다.
+            result.put("request", request); // request 객체를 result에 저장합니다.
+            qs.qnaList(result); // QnaService를 통해 Q&A 리스트 데이터를 가져옵니다.
+            mav.addObject("qnaList", (List<QnaVO>) result.get("qnaList")); // ModelAndView 객체에 Q&A 리스트를 추가합니다.
+            mav.addObject("paging", (Paging) result.get("paging")); // ModelAndView 객체에 페이징 정보를 추가합니다.
+            url = "qna/qnaList"; // 화면을 "qna/qnaList"라는 view로 설정합니다.
+        }
+        mav.setViewName(url); // 설정한 URL로 이동합니다.
+        return mav; // 설정한 데이터를 가진 ModelAndView 객체를 반환합니다.
+    }
 
-	@RequestMapping("qnaList")
-	public ModelAndView qnaList(HttpServletRequest request) {
-		ModelAndView mav = new ModelAndView();
-		HttpSession session = request.getSession();
-		MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
-		String url = "member/loginForm";
-		if(mvo != null) {
-			HashMap<String, Object> result = new HashMap<>();
-			result.put("id", mvo.getId());
-			result.put("request", request);
-			qs.qnaList(result);
-			mav.addObject("qnaList", (List<QnaVO>)result.get("qnaList"));
-			mav.addObject("paging", (Paging)result.get("paging"));
-			url = "qna/qnaList";
-		}
-		mav.setViewName(url);
-		return mav;
-	}
+    // 다른 메서드들도 비슷한 방식으로 처리합니다.
 
-	@RequestMapping("/qnaDetail")
-	public ModelAndView qnaView(HttpServletRequest request, @RequestParam("qseq") int qseq) {
-		ModelAndView mav = new ModelAndView();
-		HttpSession session = request.getSession();
-		MemberVO mvo = (MemberVO) session.getAttribute("loginUser");
-		String url = "member/loginForm";
-		if (mvo != null) {
-			mav.addObject("qnaVO", qs.getQna(qseq));
-			url = "qna/qnaDetail";
-		}
-		mav.setViewName(url);
-		return mav;
-	}
-
-	@RequestMapping("/qnaWriteForm")
-	public String qnaWriteForm(Model model, HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
-		String url = "member/loginForm";
-		if (mvo != null) {
-			url = "qna/qnaWriteForm";
-		}
-		return url;
-	}
-
-	@PostMapping("/qnaWrite")
-	public ModelAndView qnaWrite(@ModelAttribute("dto") QnaVO qvo, HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		ModelAndView mav = new ModelAndView();
-		MemberVO mvo = (MemberVO) session.getAttribute("loginUser");
-		String url = "member/loginForm";
-		if (mvo != null) {
-			qvo.setId(mvo.getId());
-			qs.qnaWrite(qvo);
-			url = "redirect:/qnaList";
-		}
-		mav.setViewName(url);
-		return mav;
-	}
-
-	@RequestMapping("/qnaUpdateform")
-	public String qnaUpdateform(@RequestParam("qseq") int qseq, Model model, HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
-		String url = "member/loginForm";
-		if (mvo != null) {
-			QnaVO qvo = qs.getQna(qseq);
-			model.addAttribute("qvo", qvo);
-			url = "qna/qnaUpdateForm";
-		}
-		return url;
-	}
-
-	@PostMapping("/qnaUpdate")
-	public ModelAndView qnaUpdate(@ModelAttribute("dto") QnaVO qvo, BindingResult result, HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		ModelAndView mav = new ModelAndView();
-		MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
-		String url = "member/loginForm";
-		if (mvo != null) {
-			qvo.setId(mvo.getId());
-			qs.qnaUpdate(qvo);
-			url = "redirect:/qnaList";
-		}
-		mav.setViewName(url);
-		return mav;
-	}
-
-	@RequestMapping("/qnaDelete")
-	public String qnaDelete(@RequestParam("qseq") int qseq, HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		MemberVO mvo = (MemberVO) session.getAttribute("loginUser");
-		String url = "member/login";
-		if (mvo != null) {
-			qs.qnaDelete(qseq);
-			url = "redirect:/qnaList";
-		}
-		return url;
-	}
+    @PostMapping("/qnaUpdate")
+    public ModelAndView qnaUpdate(@ModelAttribute("dto") QnaVO qvo, BindingResult result, HttpServletRequest request) {
+        HttpSession session = request.getSession(); // HttpSession 객체를 가져옵니다.
+        ModelAndView mav = new ModelAndView(); // 새로운 ModelAndView 객체를 생성합니다.
+        MemberVO mvo = (MemberVO) session.getAttribute("loginUser"); // "loginUser" 속성으로 저장된 MemberVO 객체를 가져옵니다.
+        String url = "member/loginForm"; // 로그인 페이지로 이동할 URL을 기본값으로 설정합니다.
+        if (mvo != null) {
+            qvo.setId(mvo.getId()); // Q&A 작성자의 ID를 설정합니다.
+            qs.qnaUpdate(qvo); // QnaService를 통해 Q&A 수정을 처리합니다.
+            url = "redirect:/qnaList"; // Q&A 리스트 페이지로 이동합니다.
+        }
+        mav.setViewName(url); // 설정한 URL로 이동합니다.
+        return mav; // 설정한 데이터를 가진 ModelAndView 객체를 반환합니다.
+    }
 }
