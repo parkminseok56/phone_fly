@@ -21,6 +21,7 @@ import com.ezen.phonefly2.service.ProductService;
 
 @Controller
 public class ProductController {
+	
     // 상품 관련 기능을 처리하는 컨트롤러(Controller) 클래스입니다.
     // 상품 상세 정보 조회, 상품 리스트 조회, 상품 비교, 리뷰 작성 등의 기능을 처리하고 화면에 데이터를 전달합니다. 
     // Controller 클래스에서는 각 메서드에 따라 요청에 따른 작업을 수행하고, 그 결과를 화면에 나타낼 수 있는 ModelAndView 객체에 데이터를 담아 반환합니다.
