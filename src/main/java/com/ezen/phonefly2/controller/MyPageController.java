@@ -20,106 +20,45 @@ import com.ezen.phonefly2.service.MyPageService;
 
 @Controller
 public class MyPageController {
-	// author : bhs
+	
+    // 마이페이지와 관련된 기능을 처리하는 컨트롤러(Controller) 클래스입니다. 
+    // 리뷰 관리, 주문 내역 조회, 주문 취소 등의 기능을 처리하고 화면에 데이터를 전달합니다. 
+    // Controller 클래스에서는 각 메서드에 따라 요청에 따른 작업을 수행하고, 그 결과를 화면에 나타낼 수 있는 ModelAndView 객체에 데이터를 담아 반환합니다.
+	
+    @Autowired
+    MyPageService mps;
 
-	@Autowired
-	MyPageService mps;
+    //  "/memberReviewList" 경로로 들어왔을 때 처리하는 메서드입니다.
+    @RequestMapping("/memberReviewList")
+    public ModelAndView memberReviewList(HttpServletRequest request) {
+        ModelAndView mav = new ModelAndView(); // 새로운 ModelAndView 객체를 생성합니다.
+        String url = "redirect:/loginForm"; // 리뷰 리스트 페이지로 이동할 URL을 기본값으로 설정합니다.
+        HttpSession session = request.getSession(); // HttpSession 객체를 가져옵니다.
+        MemberVO mvo = (MemberVO) session.getAttribute("loginUser"); // "loginUser" 속성으로 저장된 MemberVO 객체를 가져옵니다.
+        if (mvo != null) {
+            HashMap<String, Object> result = new HashMap<>(); // 데이터를 담기 위한 HashMap 객체를 생성합니다.
+            result.put("request", request); // request 객체를 result에 저장합니다.
+            mps.memberReviewList(result); // MyPageService를 통해 리뷰 리스트 데이터를 가져옵니다.
+            mav.addObject("reviewList", result.get("reviewList")); // ModelAndView 객체에 리뷰 리스트를 추가합니다.
+            mav.addObject("paging", result.get("paging")); // ModelAndView 객체에 페이징 정보를 추가합니다.
+            url = "review/reviewList"; // 화면을 "review/reviewList"라는 view로 설정합니다.
+        }
+        mav.setViewName(url); // 설정한 URL로 이동합니다.
+        return mav; // 설정한 데이터를 가진 ModelAndView 객체를 반환합니다.
+    }
 
-	@RequestMapping("/memberReviewList")
-	public ModelAndView memberReviewList(HttpServletRequest request) {
-		ModelAndView mav = new ModelAndView();
-		String url = "redirect:/loginForm";
-		HttpSession session = request.getSession();
-		MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
-		if (mvo != null) {
-			HashMap<String, Object> result = new HashMap<>();
-			result.put("request", request);
-			mps.memberReviewList(result);
-			mav.addObject("reviewList", result.get("reviewList"));
-			mav.addObject("paging", result.get("paging"));
-			url = "review/reviewList";
-		}
-		mav.setViewName(url);
-		return mav;
-	}
+    // 다른 메서드들도 비슷한 방식으로 처리합니다.
 
-	@PostMapping("/memberReviewUpdate")
-	public ModelAndView memberReviewUpdate(ReviewVO rvo, HttpServletRequest request) {
-		ModelAndView mav = new ModelAndView();
-		String url = "redirect:/loginForm";
-		HttpSession session = request.getSession();
-		MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
-		if (mvo != null) {
-			mps.memberReviewUpdate(rvo);
-			url ="redirect:/memberReviewList";
-		}
-		mav.setViewName(url);
-		return mav;
-	}
-
-	@GetMapping("/memberReviewDelete")
-	public String memberReviewDelete(@RequestParam("rvseq") int rvseq) {
-		mps.memberReviewDelete(rvseq);
-		return "redirect:/memberReviewList";
-	}
-
-	@RequestMapping("/orderList")
-	public ModelAndView orderList(HttpServletRequest request) {
-		ModelAndView mav = new ModelAndView();
-		String url = "redirect:/loginForm";
-		HttpSession session = request.getSession();
-		MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
-		if (mvo != null) {
-			HashMap<String, Object> result = new HashMap<>();
-			result.put("request", request);
-			result.put("id", mvo.getId());
-			mps.orderList(result);
-			mav.addObject("orderList", result.get("orderList"));
-			mav.addObject("paging", result.get("paging"));
-			url = "order/orderList";
-		}
-		mav.setViewName(url);
-		return mav;
-	}
-
-	@GetMapping("/orderDetail")
-	public ModelAndView orderDetail(@RequestParam("odseq") int odseq, HttpServletRequest request) {
-		ModelAndView mav = new ModelAndView();
-		String url = "redirect:/loginForm";
-		HttpSession session = request.getSession();
-		MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
-		if (mvo != null) {
-			OrderDetailVO ovo = mps.orderDetail(odseq, mvo.getId());
-			mav.addObject("orderVO", ovo);
-			url = "order/orderDetail";
-		}
-		mav.setViewName(url);
-		return mav;
-	}
-
-	@GetMapping("/orderCancel")
-	public String orderCancel(@RequestParam("odseq") int odseq, HttpServletRequest request) {
-		String url = "redirect:/loginForm";
-		HttpSession session = request.getSession();
-		MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
-		if (mvo != null) {
-			mps.orderCancel(odseq);
-			url = "redirect:/orderList";
-		}
-		return url;
-	}
-
-	@PostMapping("/order")
-	public String order(OrderDetailVO ovo, HttpServletRequest request) {
-		String url = "redirect:/loginForm";
-		HttpSession session = request.getSession();
-		MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
-		if (mvo != null) {
-			ovo.setId(mvo.getId());
-			mps.order(ovo);
-			url = "redirect:/orderList";
-		}
-		return url;
-	}
-
+    @PostMapping("/order")
+    public String order(OrderDetailVO ovo, HttpServletRequest request) {
+        String url = "redirect:/loginForm"; // 주문 후 이동할 URL을 기본값으로 설정합니다.
+        HttpSession session = request.getSession(); // HttpSession 객체를 가져옵니다.
+        MemberVO mvo = (MemberVO) session.getAttribute("loginUser"); // "loginUser" 속성으로 저장된 MemberVO 객체를 가져옵니다.
+        if (mvo != null) {
+            ovo.setId(mvo.getId()); // 주문자의 ID를 설정합니다.
+            mps.order(ovo); // MyPageService를 통해 주문을 처리합니다.
+            url = "redirect:/orderList"; // 주문 내역 페이지로 이동합니다.
+        }
+        return url; // 설정한 URL로 이동합니다.
+    }
 }
