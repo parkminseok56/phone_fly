@@ -16,6 +16,7 @@ public class MobileController {
 
 	// 모바일 화면에 대한 기능을 처리하는 컨트롤러(Controller) 클래스입니다. 
 	// 모바일 홈페이지의 메인 화면 및 소개 화면에 대한 기능을 처리하고 화면에 데이터를 전달합니다.
+	// Controller 클래스에서는 각 메서드에 따라 요청에 따른 작업을 수행하고, 그 결과를 화면에 나타낼 수 있는 ModelAndView 객체에 데이터를 담아 반환합니다.
 
     @Autowired
     MainService ms;
