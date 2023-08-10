@@ -19,6 +19,11 @@ import com.ezen.phonefly2.util.Paging;
 @Controller
 public class CommonController {
 
+    // 공통적으로 사용되는 내용을 처리하는 컨트롤러(Controller) 클래스입니다. 
+    // 여러 경로로 들어온 요청에 따라 화면을 표시하거나 데이터를 가져오는 역할을 합니다. 
+    // Controller 클래스에서는 각 메서드에 따라 요청에 따른 작업을 수행하고, 그 결과를 화면에 나타낼 수 있는 ModelAndView 객체에 데이터를 담아 반환합니다.
+
+    
     @Autowired
     CommonService cs;
 
