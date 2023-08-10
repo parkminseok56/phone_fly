@@ -14,30 +14,40 @@ import com.ezen.phonefly2.service.MainService;
 
 @Controller
 public class MainController {
-	// author : bhs
 
-	@Autowired
-	MainService ms;
+    @Autowired
+    MainService ms;
 
-	@RequestMapping("/")
-	public String root() {
-		return "index";
-	}
+    //  "/" 경로로 들어왔을 때 처리하는 메서드입니다.
+    @RequestMapping("/")
+    public String root() {
+        return "index"; // "index"라는 view를 반환하여 화면을 표시합니다.
+    }
 
-	@RequestMapping("/main")
-	public ModelAndView main() {
-		ModelAndView mav = new ModelAndView();
-		HashMap<String, Object> result = new HashMap<>();
-		ms.getMainProduct(result);
-		List<ProductVO> mainBestList = (List<ProductVO>)result.get("mainBestList");
-		List<ProductVO> mainEventList = (List<ProductVO>)result.get("mainEventList");
-		List<ProductVO> bannerList = (List<ProductVO>)result.get("bannerList");
-		mav.addObject("mainBestList", mainBestList);
-		mav.addObject("mainEventList", mainEventList);
-		mav.addObject("bannerList", bannerList);
-		mav.addObject("bannerSize", bannerList.size());
-		mav.setViewName("main");
-		return mav;
-	}
+    //  "/main" 경로로 들어왔을 때 처리하는 메서드입니다.
+    @RequestMapping("/main")
+    public ModelAndView main() {
+        ModelAndView mav = new ModelAndView(); // 새로운 ModelAndView 객체를 생성합니다.
 
+        // 데이터를 담기 위한 HashMap 객체를 생성합니다.
+        HashMap<String, Object> result = new HashMap<>();
+
+        // MainService 타입의 객체 ms를 통해 getMainProduct 메서드를 호출하여 데이터를 가져옵니다.
+        ms.getMainProduct(result);
+
+        // result 객체에서 "mainBestList", "mainEventList", "bannerList" 키로 저장된 값을 가져옵니다.
+        List<ProductVO> mainBestList = (List<ProductVO>) result.get("mainBestList");
+        List<ProductVO> mainEventList = (List<ProductVO>) result.get("mainEventList");
+        List<ProductVO> bannerList = (List<ProductVO>) result.get("bannerList");
+
+        // 가져온 데이터를 ModelAndView 객체에 추가합니다.
+        mav.addObject("mainBestList", mainBestList);
+        mav.addObject("mainEventList", mainEventList);
+        mav.addObject("bannerList", bannerList);
+        mav.addObject("bannerSize", bannerList.size()); // bannerList의 크기를 추가합니다.
+
+        mav.setViewName("main"); // 화면을 "main"이라는 view로 설정합니다.
+
+        return mav; // 설정한 데이터를 가진 ModelAndView 객체를 반환합니다.
+    }
 }
