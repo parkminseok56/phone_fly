@@ -47,7 +47,7 @@
 
 - 2023.05.16 ~ 06.02
 <p align="center">
- <img src="https://github.com/parkminseok56/phone_fly/assets/133790403/fd98296e-6fe4-403c-a22d-28efc92a8879"width="1000">
+ <img src="https://github.com/parkminseok56/phone_fly/assets/133790403/05b02197-0ef1-4cd7-a92c-f98bf25563e6"width="1000">
 </p>
 
 
