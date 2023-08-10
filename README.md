@@ -71,7 +71,7 @@
 - 프레임워크 
   - <img src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white">
   - MyBatis 
-  - <img src="https://oopy.lazyrockets.com/api/v2/notion/image?src=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F41857ea2-4aa9-4820-983b-9f9fdd329118%2FUntitled.png&blockId=0cf4d07a-6ed8-4680-acba-295b14863c4b" width="500">
+  - <img src="https://oopy.lazyrockets.com/api/v2/notion/image?src=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F41857ea2-4aa9-4820-983b-9f9fdd329118%2FUntitled.png&blockId=0cf4d07a-6ed8-4680-acba-295b14863c4b" width="50">
 ## 분할구조도
 
  - 사용자(https://github.com/parkminseok56/phone_fly/issues/4)
