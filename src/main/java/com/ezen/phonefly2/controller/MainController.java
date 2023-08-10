@@ -15,6 +15,9 @@ import com.ezen.phonefly2.service.MainService;
 @Controller
 public class MainController {
 
+    // 메인 컨트롤러(Controller) 역할을 하는 클래스입니다.
+    // 클라이언트 요청을 받아서 필요한 작업을 처리하고, 화면에 보여줄 데이터를 준비하는 역할을 합니다.
+    
     @Autowired
     MainService ms;
 
