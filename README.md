@@ -112,9 +112,8 @@
 ## 주요 기능
 
 - 프론트
-   - 
- 
-
+   - 사용자 페이지(https://github.com/parkminseok56/phone_fly/issues/16)
+   - 관리자 페이지(https://github.com/parkminseok56/phone_fly/issues/17)
  
 - 백앤드
 
