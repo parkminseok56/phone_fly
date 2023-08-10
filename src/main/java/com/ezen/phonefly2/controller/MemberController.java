@@ -33,6 +33,9 @@ import com.google.gson.Gson;
 @Controller
 public class MemberController {
 
+	// 회원 관련 기능을 처리하는 컨트롤러(Controller) 클래스입니다. 
+	// 회원 로그인, 회원가입, 카카오 로그인, 회원 정보 수정 등의 기능을 제공합니다. 
+	
 	@Autowired
 	MemberService ms;
 
@@ -159,113 +162,127 @@ public class MemberController {
 
 		return "redirect:/";
 	}
+	
+    // 회원 가입 페이지로 이동
+    @RequestMapping("/contract")
+    public String contract() {
+        return "member/contract"; // "member/contract" 뷰 페이지로 이동
+    }
 
-	@RequestMapping("/contract")
-	public String contract() {
-		return "member/contract";
-	}
+    // 회원 가입 양식 페이지로 이동
+    @RequestMapping("/joinForm")
+    public String joinForm() {
+        return "member/joinForm"; // "member/joinForm" 뷰 페이지로 이동
+    }
 
-	@RequestMapping("/joinForm")
-	public String joinForm() {
-		return "member/joinForm";
-	}
+    // 회원 가입 처리
+    @PostMapping("/join")
+    public String join(MemberVO mvo) {
+        ms.join(mvo); // 회원 정보를 가입 처리
+        return "redirect:/loginForm"; // 로그인 페이지로 리다이렉트
+    }
 
-	@PostMapping("/join")
-	public String join(MemberVO mvo) {
-		ms.join(mvo);
-		return "redirect:/loginForm";
-	}
+    // 아이디 중복 체크
+    @RequestMapping("/idCheck")
+    public ModelAndView idCheck(@RequestParam("id") String id) {
+        ModelAndView mav = new ModelAndView();
+        MemberVO mvo = ms.getMember(id);
+        int result = 1;
+        if (mvo == null) {
+            mav.addObject("result", -1);
+        } else {
+            mav.addObject("result", 1);
+        }
+        mav.addObject("id", id);
+        mav.setViewName("member/idCheck");
+        return mav;
+    }
 
-	@RequestMapping("/idCheck")
-	public ModelAndView idCheck(@RequestParam("id") String id) {
-		ModelAndView mav = new ModelAndView();
-		MemberVO mvo = ms.getMember(id);
-		int result = 1;
-		if (mvo == null) {
-			mav.addObject("result", -1);
-		} else {
-			mav.addObject("result", 1);
-		}
-		mav.addObject("id", id);
-		mav.setViewName("member/idCheck");
-		return mav;
-	}
+    // 회원 정보 업데이트 양식 페이지로 이동
+    @RequestMapping("/memberUpdateForm")
+    public String memberUpdateForm(HttpServletRequest request) {
+        String url = "redirect:/loginForm";
+        HttpSession session = request.getSession();
+        MemberVO mvo = (MemberVO) session.getAttribute("loginUser");
+        if (mvo != null) {
+            url = "member/updateForm"; // 로그인된 회원이 있다면 "member/updateForm" 뷰 페이지로 이동
+        }
+        return url;
+    }
 
-	@RequestMapping("/memberUpdateForm")
-	public String memberUpdateForm(HttpServletRequest request) {
-		ModelAndView mav = new ModelAndView();
-		String url = "redirect:/loginForm";
-		HttpSession session = request.getSession();
-		MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
-		if (mvo != null) {
-			url = "member/updateForm";
-		}
-		return url;
-	}
+    // 회원 정보 업데이트 처리
+    @PostMapping("/memberUpdate")
+    public String memberUpdate(MemberVO mvo, HttpServletRequest request) {
+        String url = "redirect:/loginForm";
+        HttpSession session = request.getSession();
+        MemberVO mvo2 = (MemberVO) session.getAttribute("loginUser");
+        if (mvo2 != null) {
+            ms.memberUpdate(mvo); // 회원 정보 업데이트 처리
+            url = "redirect:/"; // 홈페이지로 리다이렉트
+        }
+        session.setAttribute("loginUser", mvo);
+        return url;
+    }
 
+    // 회원 탈퇴 처리
+    @RequestMapping("/deleteMember")
+    public String deleteMember(HttpServletRequest request) {
+        String url = "redirect:/loginForm";
+        HttpSession session = request.getSession();
+        MemberVO mvo = (MemberVO) session.getAttribute("loginUser");
+        if (mvo != null) {
+            ms.deleteMember(mvo.getId()); // 회원 탈퇴 처리
+            url = "redirect:/"; // 홈페이지로 리다이렉트
+        }
+        session.removeAttribute("loginUser");
+        return url;
+    }
 
-	@PostMapping("/memberUpdate")
-	public String memberUpdate(MemberVO mvo, HttpServletRequest request) {
-		String url = "redirect:/loginForm";
-		HttpSession session = request.getSession();
-		MemberVO mvo2 = (MemberVO)session.getAttribute("loginUser");
-		if (mvo2 != null) {
-			ms.memberUpdate(mvo);
-			url = "redirect:/";
-		}
-		session.setAttribute("loginUser", mvo);
-		return url;
-	}
+    // 아이디 찾기 처리
+    @RequestMapping("/selectId")
+    public ModelAndView selectId(
+            @RequestParam(value = "name", required = false) String name,
+            @RequestParam(value = "phone", required = false) String phone) {
+        ModelAndView mav = new ModelAndView();
+        String url = "member/findId";
+        if (name != null && !name.isEmpty() && phone != null && !phone.isEmpty()) {
+            MemberVO mvo = ms.findId(name, phone);
+            mav.addObject("member", mvo);
+        }
+        mav.setViewName(url);
+        return mav;
+    }
 
-	@RequestMapping("/deleteMember")
-	public String deleteMember(HttpServletRequest request) {
-		String url = "redirect:/loginForm";
-		HttpSession session = request.getSession();
-		MemberVO mvo = (MemberVO)session.getAttribute("loginUser");
-		if (mvo != null) {
-			ms.deleteMember(mvo.getId());
-			url = "redirect:/";
-		}
-		session.removeAttribute("loginUser");
-		return url;
-	}
+    // 비밀번호 찾기 처리
+    @RequestMapping("/selectPwd")
+    public ModelAndView selectPwd(
+            @RequestParam(value = "id", required = false) String id,
+            @RequestParam(value = "name", required = false) String name,
+            @RequestParam(value = "phone", required = false) String phone) {
+        ModelAndView mav = new ModelAndView();
+        String url = "member/findPwd";
+        int result = 0;
+        if (id != null && !id.isEmpty() && name != null && !name.isEmpty() && phone != null && !phone.isEmpty()) {
+            result = ms.findMember(id, name, phone); // 회원 정보와 입력 정보 비교
+        }
+        mav.addObject("result", result);
+        mav.addObject("id", id);
+        mav.setViewName(url);
+        return mav;
+    }
 
-	@RequestMapping("/selectId")
-	public ModelAndView selectId(@RequestParam(value = "name", required = false) String name, @RequestParam(value = "phone", required = false) String phone) {
-		ModelAndView mav = new ModelAndView();
-		String url = "member/findId";
-		if (name != null && !name.isEmpty() && phone != null && !phone.isEmpty()) {
-			MemberVO mvo = ms.findId(name, phone);
-			mav.addObject("member", mvo);
-		}
-		mav.setViewName(url);
-		return mav;
-	}
-
-	@RequestMapping("/selectPwd")
-	public ModelAndView selectPwd(@RequestParam(value = "id", required = false) String id, @RequestParam(value = "name", required = false) String name, @RequestParam(value = "phone", required = false) String phone) {
-		ModelAndView mav = new ModelAndView();
-		String url = "member/findPwd";
-		int result = 0;
-		if (id != null && !id.isEmpty() && name != null && !name.isEmpty() && phone != null && !phone.isEmpty()) {
-			result = ms.findMember(id, name, phone);
-		}
-		mav.addObject("result", result);
-		mav.addObject("id", id);
-		mav.setViewName(url);
-		return mav;
-	}
-
-	@RequestMapping("/setPwd")
-	public ModelAndView selectPwd(@RequestParam(value = "id", required = false) String id, @RequestParam(value = "pwd", required = false) String pwd) {
-		ModelAndView mav = new ModelAndView();
-		String url = "member/findPwd";
-		if (id != null && !id.isEmpty() && pwd != null && !pwd.isEmpty()) {
-			ms.setNewPwd(id, pwd);
-		}
-		mav.addObject("result", 3);
-		mav.setViewName(url);
-		return mav;
-	}
+    // 비밀번호 변경 처리
+    @RequestMapping("/setPwd")
+    public ModelAndView selectPwd(
+            @RequestParam(value = "id", required = false) String id,
+            @RequestParam(value = "pwd", required = false) String pwd) {
+        ModelAndView mav = new ModelAndView();
+        String url = "member/findPwd";
+        if (id != null && !id.isEmpty() && pwd != null && !pwd.isEmpty()) {
+            ms.setNewPwd(id, pwd); // 비밀번호 변경 처리
+        }
+        mav.addObject("result", 3); // 결과 값 설정
+        mav.setViewName(url);
+        return mav;
+    }
 }
-
