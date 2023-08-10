@@ -116,7 +116,11 @@
    - 관리자 페이지(https://github.com/parkminseok56/phone_fly/issues/17)
  
 - 백앤드
-
+     - 기본설정
+     - 회원가입
+     - 로그인
+     - 페이징
+     - 게시판
 
 
 ## 역할분담 및 후기
