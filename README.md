@@ -93,7 +93,7 @@
 
 ## DB 설계
 <p align="center">
- <img src="https://github.com/parkminseok56/phone_fly/assets/133790403/86c154cc-c3fa-4504-836e-c547dd95572d"width="1000">
+ <img src="https://github.com/parkminseok56/phone_fly/assets/133790403/b16848d7-cb94-42e5-9a61-62b2c4e64908"width="1000">
 </p>
 
 
