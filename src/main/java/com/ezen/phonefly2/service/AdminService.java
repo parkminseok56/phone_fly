@@ -22,72 +22,79 @@ import com.ezen.phonefly2.util.Paging;
 
 @Service
 public class AdminService {
-	@Autowired
+	@Autowired // IAdminDao 인터페이스를 구현한 DAO 클래스를 주입받는 필드
 	IAdminDao adao;
 
-	public int workerCheck(String workId, String workPwd) {
-			
-		System.out.println("id : " + workId);
-		String pwd = adao.getPwd( workId );
-		System.out.println("pwd : " + pwd);
-		int result=0;
-			
-		if(pwd == null) result = -1;  
-		else if( workPwd.equals(pwd)) result =  1;   
-		else if( !workPwd.equals(pwd)) result =  0; 
-			
-		return result;
-		
-	}
+ // 직원 로그인 체크 메서드
+ public int workerCheck(String workId, String workPwd) {
+        System.out.println("id : " + workId); // 작업자 ID 출력
+        String pwd = adao.getPwd(workId); // 작업자 ID로부터 비밀번호를 가져옴
+        System.out.println("pwd : " + pwd); // 가져온 비밀번호 출력
+        int result = 0;
 
+        if (pwd == null) result = -1; // 비밀번호가 없는 경우 결과는 -1
+        else if (workPwd.equals(pwd)) result = 1; // 비밀번호가 일치하면 결과는 1
+        else if (!workPwd.equals(pwd)) result = 0; // 비밀번호가 일치하지 않으면 결과는 0
 
-	public HashMap<String, Object> getAdminProductList(HttpServletRequest request) {
-		HashMap<String, Object> result = new HashMap<String, Object>();
-		HttpSession session = request.getSession();
+        return result;
+    }
 
-		if( request.getParameter("first")!=null ) {
-			session.removeAttribute("page");
-			session.removeAttribute("key");
-		}
-		
-		int page = 1;
-		if( request.getParameter("page") != null) {
-			page = Integer.parseInt(request.getParameter("page"));
-			session.setAttribute("page", page);
-		} else if( session.getAttribute("page")!= null ) {
-			page = (int) session.getAttribute("page");
-		} else {
-			page = 1;
-			session.removeAttribute("page");
-		}
-		
-		String key = "";
-		if( request.getParameter("key") != null ) {
-			key = request.getParameter("key");
-			session.setAttribute("key", key);
-		} else if( session.getAttribute("key")!= null ) {
-			key = (String)session.getAttribute("key");
-		} else {
-			session.removeAttribute("key");
-			key = "";
-		} 
-		
-		Paging paging = new Paging();
-		paging.setPage(page);
-		
-		int count = adao.getAllCount( "product", "name", key );
-		paging.setTotalCount(count);
-		paging.paging();
-		
-		List<ProductVO> productList = adao.listProduct( paging , key );
-		result.put("AdminProductList" , productList);
-		result.put("paging", paging);
-		result.put("key", key);
-		
-		return result;
-	}
+// 관리자용 상품 목록 조회 메서드
+public HashMap<String, Object> getAdminProductList(HttpServletRequest request) {
+    // 결과를 담을 HashMap 생성
+    HashMap<String, Object> result = new HashMap<String, Object>();
+    
+    // 현재 세션 가져오기
+    HttpSession session = request.getSession();
+    
+    // 첫 요청 시 페이지와 키 값을 세션에서 제거
+    if (request.getParameter("first") != null) {
+        session.removeAttribute("page");
+        session.removeAttribute("key");
+    }
+    
+    int page = 1; // 초기 페이지 값 설정
+    if (request.getParameter("page") != null) { // 요청 파라미터에 페이지 값이 있는 경우
+        page = Integer.parseInt(request.getParameter("page")); // 페이지 값을 파라미터에서 읽어와 설정
+        session.setAttribute("page", page); // 페이지 값을 세션에 저장
+    } else if (session.getAttribute("page") != null) { // 세션에 페이지 값이 있는 경우
+        page = (int) session.getAttribute("page"); // 세션에서 페이지 값을 가져와 설정
+    } else { // 페이지 값이 없는 경우
+        page = 1; // 페이지 값을 1로 설정
+        session.removeAttribute("page"); // 세션에서 페이지 값을 제거
+    }
+    
+    String key = ""; // 초기 검색 키워드 값 설정
+    if (request.getParameter("key") != null) { // 요청 파라미터에 키 값이 있는 경우
+        key = request.getParameter("key"); // 키 값을 파라미터에서 읽어와 설정
+        session.setAttribute("key", key); // 키 값을 세션에 저장
+    } else if (session.getAttribute("key") != null) { // 세션에 키 값이 있는 경우
+        key = (String) session.getAttribute("key"); // 세션에서 키 값을 가져와 설정
+    } else { // 키 값이 없는 경우
+        session.removeAttribute("key"); // 세션에서 키 값을 제거
+        key = ""; // 키 값을 빈 문자열로 설정
+    }
+    
+    Paging paging = new Paging(); // 페이징 객체 생성
+    paging.setPage(page); // 페이징 객체에 페이지 값 설정
+    
+    // "product" 테이블에서 "name" 필드를 키워드로 검색한 총 개수 가져오기
+    int count = adao.getAllCount("product", "name", key);
+    paging.setTotalCount(count); // 페이징 객체에 총 개수 설정
+    paging.paging(); // 페이징 계산 수행
+    
+    // 페이징 처리된 상품 목록 가져오기
+    List<ProductVO> productList = adao.listProduct(paging, key);
+    
+    // 결과 HashMap에 상품 목록, 페이징 정보, 검색 키워드 저장
+    result.put("AdminProductList", productList);
+    result.put("paging", paging);
+    result.put("key", key);
+    
+    return result; // 결과 HashMap 반환
+}
 
-
+         // // 관리자용 회원 목록 조회 메서드
 	public HashMap<String, Object> getMemberList(HttpServletRequest request) {
 	    HashMap<String, Object> result = new HashMap<String, Object>();
 	    HttpSession session = request.getSession();
@@ -135,6 +142,7 @@ public class AdminService {
 	    return result;
 	}
 
+	// 관리자용 Q&A 목록 조회 메서드
 	public HashMap<String, Object> getQnaList(HttpServletRequest request) {
 		HashMap<String, Object> result = new HashMap<String, Object>();
 		HttpSession session = request.getSession();
@@ -177,6 +185,7 @@ public class AdminService {
 	
 }
 
+	 // 관리자용 공지사항 목록 조회 메서드
 	public HashMap<String, Object> getNoticeList(HttpServletRequest request) {
 	    HashMap<String, Object> result = new HashMap<String, Object>();
 	    HttpSession session = request.getSession();
@@ -227,6 +236,7 @@ public class AdminService {
 	}
 
 
+	// 관리자용 이벤트 목록 조회 메서드
 	public HashMap<String, Object> getEventList(HttpServletRequest request) {
 	    HashMap<String, Object> result = new HashMap<String, Object>();
 	    HttpSession session = request.getSession();
@@ -277,6 +287,7 @@ public class AdminService {
 	}
 
 
+	// 관리자용 주문 목록 조회 메서드
 	public HashMap<String, Object> getOrderList(HttpServletRequest request) {
 	    HashMap<String, Object> result = new HashMap<String, Object>();
 	    HttpSession session = request.getSession();
@@ -326,44 +337,43 @@ public class AdminService {
 	    return result;
 	}
 
-	
+	 // 배너 목록 조회 메서드
 	public List<BannerVO> getBannerList() {
 		return adao.getBannerList();
 	}
 
-	public void insertBanner(HashMap<String, Object> paramMap) {
-		adao.insertBanner( paramMap );	
-	}
-	
-	public void updateSeq(int changeval, String useyn, int bseq) {
-		adao.updateSeq( changeval, useyn, bseq);		
-	}
+	// 배너 추가 메서드
+    public void insertBanner(HashMap<String, Object> paramMap) {
+        adao.insertBanner(paramMap);
+    }
 
+    // 배너 순서 업데이트 메서드
+    public void updateSeq(int changeval, String useyn, int bseq) {
+        adao.updateSeq(changeval, useyn, bseq);
+    }
 
-	public void deleteBanner(int bseq) {
-		adao.deleteBanner(bseq);
-		
-	}
+    // 배너 삭제 메서드
+    public void deleteBanner(int bseq) {
+        adao.deleteBanner(bseq);
+    }
 
+    // Q&A 답변 작성 메서드
+    public void qnaReply(int qseq, String reply) {
+        adao.qnaReply(qseq, reply);
+    }
 
-	public void qnaReply(int qseq, String reply) {
-		adao.qnaReply( qseq, reply );	
-	}
+    // 상품 추가 메서드
+    public ProductVO insertProduct(ProductVO productvo) {
+        adao.insertProduct(productvo);
+        return productvo;
+    }
 
+    // 상품 색상 추가 메서드
+    public void insertColor(HashMap<String, Object> paramMap) {
+        adao.insertColor(paramMap);
+    }
 
-
-	public ProductVO insertProduct(ProductVO productvo) {
-		adao.insertProduct( productvo );
-		return productvo;
-	}
-
-
-
-	public void insertColor(HashMap<String, Object> paramMap) {
-		adao.insertColor( paramMap );		
-	}
-
-
+	// 상품 색상 목록 조회 메서드
 	public HashMap<String, Object> getColorList(int pseq) {
 		HashMap<String, Object> result = new HashMap<String, Object>();
 		
@@ -374,36 +384,38 @@ public class AdminService {
 	}
 
 
-	public BannerVO getBanner(int bseq) {
-		return adao.getBanner(bseq);
-	}
+	// 배너 정보 조회 메서드
+    public BannerVO getBanner(int bseq) {
+        return adao.getBanner(bseq);
+    }
 
-	public void deleteProduct(int pseq) {
-		adao.deleteProduct(pseq);
-	}
+    // 상품 삭제 메서드
+    public void deleteProduct(int pseq) {
+        adao.deleteProduct(pseq);
+    }
 
+    // 상품 정보 업데이트 메서드
+    public void updateProduct(ProductVO pvo) {
+        adao.updateProduct(pvo);
+    }
 
-	public void updateProduct(ProductVO pvo) {
-		adao.updateProduct(pvo);
-	}
+    // 상품 색상 정보 조회 메서드
+    public ColorVO getColor(int cseq) {
+        return adao.getColor(cseq);
+    }
 
+    // 상품 색상 정보 업데이트 메서드
+    public void updateColor(ColorVO cvo) {
+        adao.updateColor(cvo);
+    }
 
-	public ColorVO getColor(int cseq) {
-		return adao.getColor(cseq);
-	}
+    // 배너 정보 업데이트 메서드
+    public void updateBanner(BannerVO bannervo) {
+        adao.updateBanner(bannervo);
+    }
 
-
-	public void updateColor(ColorVO cvo) {
-		adao.updateColor(cvo);
-	}
-
-  public void updateBanner(BannerVO bannervo) {
-		adao.updateBanner(bannervo);
-	}
-
-
-public void deleteColor(int cseq) {
-		adao.deleteColor(cseq);
-}	
-	
+    // 상품 색상 삭제 메서드
+    public void deleteColor(int cseq) {
+        adao.deleteColor(cseq);
+    }
 }
