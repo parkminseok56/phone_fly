@@ -96,6 +96,7 @@
 
 ## 협업준비 
 
+-유스 케이스 다이어그램 , 시퀀스 다이어그램 , 기능정의서로 구분하여 준비하였습니다.
 https://github.com/parkminseok56/Communication/blob/main/
 
 
