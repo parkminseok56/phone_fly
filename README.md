@@ -108,7 +108,7 @@ https://github.com/parkminseok56/Communication/blob/main/
 
 
 
-## 주요 기능
+## 기능 구현
 
 - 프론트
    - 사용자 페이지(https://github.com/parkminseok56/phone_fly/issues/16)
