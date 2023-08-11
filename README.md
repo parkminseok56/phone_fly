@@ -47,8 +47,9 @@
 
 - 2023.05.16 ~ 06.02
 <p align="center">
- <img src="https://github.com/parkminseok56/phone_fly/assets/133790403/8dceabe3-239b-4805-ac41-b782c719a0b3"width="1000">
+ <img src="https://github.com/parkminseok56/phone_fly/assets/133790403/aba9f6b6-7254-4d03-a02f-71d0eb231ac7"width="1000">
 </p>
+
 
 <p>
  <img src="https://github.com/parkminseok56/phone_fly/assets/133790403/d09ba10b-83ad-422f-a089-34485ae7bdd5"width="30">:협업 준비
