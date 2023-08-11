@@ -94,7 +94,7 @@
 
 ## 협업준비 
 
-https://github.com/parkminseok56/Communication/blob/main/README.md
+https://github.com/parkminseok56/Communication/blob/main/
 
 
 ## DB 설계
