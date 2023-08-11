@@ -108,18 +108,12 @@ https://github.com/parkminseok56/Communication/blob/main/
 
 
 
-## 기능 구현
+## 화면 구성
 
-- 프론트
    - 사용자 페이지(https://github.com/parkminseok56/phone_fly/issues/16)
    - 관리자 페이지(https://github.com/parkminseok56/phone_fly/issues/17)
  
-- 백앤드
-     - 기본설정
-     - 회원가입
-     - 로그인
-     - 페이징
-     - 게시판(CRUD)
+
 
 
 ## 후기
