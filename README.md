@@ -90,40 +90,16 @@
 - 프레임워크 
   - <img src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white">
   - <img src="https://oopy.lazyrockets.com/api/v2/notion/image?src=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F41857ea2-4aa9-4820-983b-9f9fdd329118%2FUntitled.png&blockId=0cf4d07a-6ed8-4680-acba-295b14863c4b" width="100">
-## 분할구조도
 
- - 사용자(https://github.com/parkminseok56/phone_fly/issues/4)
+## 협업준비 
 
- - 관리자(https://github.com/parkminseok56/phone_fly/issues/5)
-
-## 시퀀스 다이어그램
-
-- 비회원(https://github.com/parkminseok56/phone_fly/issues/6)
-
-- 회원_구매(https://github.com/parkminseok56/phone_fly/issues/7)
-
-- 회원_구매 이 외 (https://github.com/parkminseok56/phone_fly/issues/8)
-
-- 공통(https://github.com/parkminseok56/phone_fly/issues/9)
-
-- 관리자(https://github.com/parkminseok56/phone_fly/issues/10)
-
+https://github.com/parkminseok56/Communication/blob/main/README.md
 
 
 ## DB 설계
 <p align="center">
  <img src="https://github.com/parkminseok56/phone_fly/assets/133790403/c7acd141-8e61-4ff9-b7e8-ebaddb73b717"width="1000">
 </p>
-
-
-## 기능정의서
-- 공통(https://github.com/parkminseok56/phone_fly/issues/11)
-
-- 비회원(https://github.com/parkminseok56/phone_fly/issues/12)
-
-- 회원https://github.com/parkminseok56/phone_fly/issues/13)
-
-- 관리자(https://github.com/parkminseok56/phone_fly/issues/14)
 
 
 
