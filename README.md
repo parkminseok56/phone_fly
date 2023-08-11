@@ -50,6 +50,25 @@
  <img src="https://github.com/parkminseok56/phone_fly/assets/133790403/8dceabe3-239b-4805-ac41-b782c719a0b3"width="1000">
 </p>
 
+<p align="center">
+ <img src="https://github.com/parkminseok56/phone_fly/assets/133790403/d09ba10b-83ad-422f-a089-34485ae7bdd5"width="100">:협업 준비
+</p>
+
+<p align="center">
+ <img src="https://github.com/parkminseok56/phone_fly/assets/133790403/001a5df9-41aa-4181-bab3-d8cb0d6b9b3a"width="100">:관리자 페이지
+</p>
+
+<p align="center">
+ <img src="https://github.com/parkminseok56/phone_fly/assets/133790403/d61fa49b-5ec6-470d-a463-c7c3a7c4062c"width="100">:유저 페이지
+</p>
+
+<p align="center">
+ <img src="https://github.com/parkminseok56/phone_fly/assets/133790403/9ed7fc52-9101-46ef-834b-1cc22c6d732e"width="100">:디버깅 및 테스트
+</p>
+
+<p align="center">
+ <img src="https://github.com/parkminseok56/phone_fly/assets/133790403/cba9f018-acdc-4556-ba4a-defc9a6ce3d2"width="100">:발표 준비
+</p>
 
 ## 개발 환경
 
