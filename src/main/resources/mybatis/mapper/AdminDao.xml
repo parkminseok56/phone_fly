@@ -5,16 +5,22 @@
     
 <mapper namespace="com.ezen.phonefly2.dao.IAdminDao">
 
-<select id="getPwd"  resultType="string">
-		select pwd from worker where id=#{param1}
-	</select>
+<!-- ID를 기반으로 'worker' 테이블에서 비밀번호(pwd)를 가져오는 쿼리입니다. -->
+
+<select id="getPwd" resultType="string">
+    select pwd from worker where id=#{param1}
+</select>
+
+<!-- 특정 테이블에서 특정 필드에 키워드가 포함된 레코드의 개수를 가져오는 쿼리입니다.
+     ${param1}은 테이블명, ${param2}는 필드명, #{param3}은 키워드를 나타냅니다. -->
 
 <select id="getAllCount" resultType="_int">
-     select count(*) from ${param1} where ${param2} like '%'||#{param3}||'%'
- </select>
+    select count(*) from ${param1} where ${param2} like '%'||#{param3}||'%'
+</select>
+
 	
   
-<!-- 이 쿼리는 'product' 테이블에서 이름에 특정 키워드가 포함된 레코드를 내림차순으로 가져와서 페이징 처리를 수행한 후 결과를 반환합니다.
+<!-- 'product' 테이블에서 이름에 특정 키워드가 포함된 레코드를 내림차순으로 가져와서 페이징 처리를 수행한 후 결과를 반환합니다.
      화면에 보여줄 제품 목록을 페이징하여 가져옵니다. -->
 
 <select id="listProduct" resultType="com.ezen.phonefly2.dto.ProductVO">
@@ -34,7 +40,7 @@
 </select>
 
 	  
-
+<!-- 'Member' 테이블에서 회원 목록을 페이징하여 가져오는 쿼리입니다. 서브쿼리문 내용은 위와 같으므로 중략합니다. -->
 
   <select id="listMember" resultType="com.ezen.phonefly2.dto.MemberVO">
      select * from (
@@ -46,7 +52,7 @@
      
   </select>
 
-
+<!-- 'Qna' 테이블에서 Qna 목록을 페이징하여 가져오는 쿼리입니다. 서브쿼리문 내용은 위와 같으므로 중략합니다. -->
 
   <select id="listQna" resultType="com.ezen.phonefly2.dto.QnaVO">
      select * from(
@@ -57,7 +63,9 @@
      ) where rn &lt; = #{param1.endNum}
      
   </select>
-  
+
+<!-- 'Order' 테이블에서  주문목록을 페이징하여 가져오는 쿼리입니다. 서브쿼리문 내용은 위와 같으므로 중략합니다. -->
+	
   <select id="listOrder" resultType="com.ezen.phonefly2.dto.OrderDetailVO">
         select * from(
         select * from(
@@ -66,7 +74,9 @@
          )where rn &gt;= #{param1.startNum}
          )where rn &lt;= #{param1.endNum} 
   </select> 
-  
+
+<!-- 'Notice' 테이블에서 공지사항 목록을 페이징하여 가져오는 쿼리입니다. 서브쿼리문 내용은 위와 같으므로 중략합니다. -->	
+	
   <select id="listNotice" resultType="com.ezen.phonefly2.dto.NoticeVO">
     SELECT *
     FROM (
@@ -81,7 +91,8 @@
     WHERE rn &gt;= #{param1.startNum} AND rn &lt;= #{param1.endNum}
 	</select>
 
-
+<!-- 'Event' 테이블에서 이벤트 목록을 페이징하여 가져오는 쿼리입니다. 서브쿼리문 내용은 위와 같으므로 중략합니다. -->
+	
 	<select id="listEvent" resultType="com.ezen.phonefly2.dto.EventVO">
 	    SELECT *
 	    FROM (
@@ -96,31 +107,50 @@
 	    WHERE rn &gt;= #{param1.startNum} AND rn &lt;= #{param1.endNum}
 	</select>
 	
+	<!-- 'banner' 테이블에서 모든 레코드를 가져와서 'order_seq' 필드를 기준으로 오름차순 정렬한 후 결과를 반환하는 쿼리입니다. -->
+	
 	<select id="getBannerList" resultType="com.ezen.phonefly2.dto.BannerVO">
-		select * from banner order by order_seq
+	    select * from banner order by order_seq
 	</select>
+
+	<!-- 'banner' 테이블에서 특정 'bseq' 값을 기반으로 레코드를 선택하여 가져오는 쿼리입니다. -->
+	<!-- 이 쿼리는 'getBanner' ID로 정의되었으며, '#{param1}'은 매개변수로 전달된 'bseq' 값을 대체합니다. -->	
 	
 	<select id="getBanner" resultType="com.ezen.phonefly2.dto.BannerVO">
-		select * from banner where bseq=#{param1}
+	    select * from banner where bseq=#{param1}
 	</select>
+
+		
+	<!-- 'banner' 테이블에 새로운 레코드를 삽입하는 쿼리입니다. -->
+	<!-- 'banner_seq.nextVal'은 시퀀스를 통해 자동으로 새로운 값을 생성합니다. -->
 	
 	<insert id="insertBanner" parameterType="com.ezen.phonefly2.dto.BannerVO">
-		insert into banner(bseq, subject, order_seq, useyn, video, btitle, btext, top, left )
-		values( banner_seq.nextVal, #{subject}, #{order_seq}, #{useyn}, #{video}, #{btitle}, #{btext}, #{top}, #{left} )
+	    insert into banner(bseq, subject, order_seq, useyn, video, btitle, btext, top, left )
+	    values( banner_seq.nextVal, #{subject}, #{order_seq}, #{useyn}, #{video}, #{btitle}, #{btext}, #{top}, #{left} )
 	</insert>
 	
+	<!-- 'banner' 테이블에서 특정 레코드의 'order_seq'와 'useyn' 값을 수정하는 쿼리입니다. -->
+	
 	<update id="updateSeq" >
-		update banner set order_seq=#{param1}, useyn=#{param2} where bseq=#{param3}
+	    update banner set order_seq=#{param1}, useyn=#{param2} where bseq=#{param3}
 	</update>
+	
+	<!-- 'banner' 테이블에서 특정 레코드를 삭제하는 쿼리입니다. -->
+	<!-- 'deleteBanner' ID로 정의되었으며, 매개변수로 전달된 'bseq' 값을 사용하여 삭제 작업을 수행합니다. -->
 	
 	<delete id="deleteBanner" >
-		delete from banner where bseq=#{param1}
+	    delete from banner where bseq=#{param1}
 	</delete>
 	
+	<!-- 'banner' 테이블에서 특정 레코드를 수정하는 쿼리입니다. -->
+	<!--  'updateBanner' ID로 정의되었으며, 매개변수의 속성을 사용하여 수정 작업을 수행합니다. -->
+	<!-- 'bseq' 값으로 특정 레코드를 식별하고, 다른 속성들을 업데이트합니다. -->
+	
 	<update id="updateBanner" parameterType="com.ezen.phonefly2.dto.BannerVO" >
-		update banner set subject=#{subject}, order_seq=#{order_seq}, useyn=#{useyn},
-		video=#{video}, btitle=#{btitle}, btext=#{btext}, top=#{top}, left=#{left} where bseq=#{bseq}
+	    update banner set subject=#{subject}, order_seq=#{order_seq}, useyn=#{useyn},
+	    video=#{video}, btitle=#{btitle}, btext=#{btext}, top=#{top}, left=#{left} where bseq=#{bseq}
 	</update>
+
 	
 	<select id="getMember"  resultType="com.ezen.phonefly2.dto.MemberVO">
 		select * from member where mseq=#{param1}
