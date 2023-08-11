@@ -17,11 +17,19 @@
      select * from (
      select * from (
          select rownum as rn, p.* from
-         ((select * from product where name like '%'||#{param2}||'%' order by pseq desc) p)
+         ((select * from product where name like '%'||#{param2}||'%' order by pseq desc) p) 
      ) where rn &gt; = #{param1.startNum}
      ) where rn &lt; = #{param1.endNum}
-     
-  </select>
+	
+ <!--  가장 안쪽의 서브쿼리 (select * from product where name like '%'||#{param2}||'%' order by pseq desc) p은 product 테이블에서 이름(name) 필드의 값에 특정 키워드가 포함된 레코드를 내림차순으로 가져옴.
+        여기서 #{param2}는 쿼리 실행 시 전달된 매개변수의 값으로 대체됨.
+
+	그 다음 서브쿼리 (select rownum as rn, p.* from ...)은 첫 번째 서브쿼리의 결과에 대해 각 레코드마다 고유한 번호(rownum)를 부여하고, 해당 레코드 전체(p.*)를 가져옴.
+
+	가장 바깥의 쿼리는 두 번째 서브쿼리의 결과에 대해 페이징을 수행합니다. rn >= #{param1.startNum}와 rn <= #{param1.endNum} 조건을 이용해 원하는 범위의 레코드를 선택ㅎ하ㅁ.
+	이때 #{param1.startNum}과 #{param1.endNum}은 매개변수로 전달된 페이징 정보를 나타냄. -->
+  </select
+	  
 
 
   <select id="listMember" resultType="com.ezen.phonefly2.dto.MemberVO">
