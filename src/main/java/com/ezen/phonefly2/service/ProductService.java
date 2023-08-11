@@ -67,4 +67,4 @@ public class ProductService {
             for (Integer pseq : pseqList) {
                 ProductVO pvo = pdao.getProduct(pseq); // 특정 제품 정보 조회
                 if (pvo != null) {
-                    List<ColorVO> colorList = mdao.getColorList(pseq); // 제품의 색
+                    List<ColorVO> colorList = mdao.getColorList(pseq); // 제품의 색상
