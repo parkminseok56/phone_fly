@@ -43,6 +43,27 @@
  - 자주하는 질문
  - 게시판 (공지사항, 이벤트)
 
+ ## 개발 환경
+
+ 프로젝트에서 사용한 기술 스택입니다. 
+
+- 프론트앤드
+  
+  - <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
+  - <img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white">
+  - <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
+  - <img src="https://img.shields.io/badge/jquery-0769AD?style=for-the-badge&logo=jquery&logoColor=white">
+  - <img src="https://img.shields.io/badge/bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white">
+
+- 백앤드
+  - <img src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white">
+  - <img src="https://img.shields.io/badge/oracle-F80000?style=for-the-badge&logo=oracle&logoColor=white">
+  
+  
+- 프레임워크 
+  - <img src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white">
+  - <img src="https://oopy.lazyrockets.com/api/v2/notion/image?src=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F41857ea2-4aa9-4820-983b-9f9fdd329118%2FUntitled.png&blockId=0cf4d07a-6ed8-4680-acba-295b14863c4b" width="100">
+
 ## 작업 일정
 
 - 2023.05.16 ~ 06.02
@@ -71,26 +92,7 @@
  <img src="https://github.com/parkminseok56/phone_fly/assets/133790403/cba9f018-acdc-4556-ba4a-defc9a6ce3d2"width="30">:발표 준비
 </p>
 
-## 개발 환경
 
- 프로젝트에서 사용한 기술 스택입니다. 
-
-- 프론트앤드
-  
-  - <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
-  - <img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white">
-  - <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
-  - <img src="https://img.shields.io/badge/jquery-0769AD?style=for-the-badge&logo=jquery&logoColor=white">
-  - <img src="https://img.shields.io/badge/bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white">
-
-- 백앤드
-  - <img src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white">
-  - <img src="https://img.shields.io/badge/oracle-F80000?style=for-the-badge&logo=oracle&logoColor=white">
-  
-  
-- 프레임워크 
-  - <img src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white">
-  - <img src="https://oopy.lazyrockets.com/api/v2/notion/image?src=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F41857ea2-4aa9-4820-983b-9f9fdd329118%2FUntitled.png&blockId=0cf4d07a-6ed8-4680-acba-295b14863c4b" width="100">
 
 ## 협업준비 
 
