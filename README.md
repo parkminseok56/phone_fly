@@ -77,11 +77,11 @@
 </p>
 
 <p>
- <img src="https://github.com/parkminseok56/phone_fly/assets/133790403/001a5df9-41aa-4181-bab3-d8cb0d6b9b3a"width="30">:관리자 페이지
+ <img src="https://github.com/parkminseok56/phone_fly/assets/133790403/001a5df9-41aa-4181-bab3-d8cb0d6b9b3a"width="30">:관리자 페이지 개발
 </p>
 
 <p>
- <img src="https://github.com/parkminseok56/phone_fly/assets/133790403/d61fa49b-5ec6-470d-a463-c7c3a7c4062c"width="30">:유저 페이지
+ <img src="https://github.com/parkminseok56/phone_fly/assets/133790403/d61fa49b-5ec6-470d-a463-c7c3a7c4062c"width="30">:유저 페이지 개발
 </p>
 
 <p>
