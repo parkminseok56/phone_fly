@@ -51,23 +51,23 @@
 </p>
 
 <p>
- <img src="https://github.com/parkminseok56/phone_fly/assets/133790403/d09ba10b-83ad-422f-a089-34485ae7bdd5"width="50">:협업 준비
+ <img src="https://github.com/parkminseok56/phone_fly/assets/133790403/d09ba10b-83ad-422f-a089-34485ae7bdd5"width="30">:협업 준비
 </p>
 
 <p>
- <img src="https://github.com/parkminseok56/phone_fly/assets/133790403/001a5df9-41aa-4181-bab3-d8cb0d6b9b3a"width="50">:관리자 페이지
+ <img src="https://github.com/parkminseok56/phone_fly/assets/133790403/001a5df9-41aa-4181-bab3-d8cb0d6b9b3a"width="30">:관리자 페이지
 </p>
 
 <p>
- <img src="https://github.com/parkminseok56/phone_fly/assets/133790403/d61fa49b-5ec6-470d-a463-c7c3a7c4062c"width="50">:유저 페이지
+ <img src="https://github.com/parkminseok56/phone_fly/assets/133790403/d61fa49b-5ec6-470d-a463-c7c3a7c4062c"width="30">:유저 페이지
 </p>
 
 <p>
- <img src="https://github.com/parkminseok56/phone_fly/assets/133790403/9ed7fc52-9101-46ef-834b-1cc22c6d732e"width="50">:디버깅 및 테스트
+ <img src="https://github.com/parkminseok56/phone_fly/assets/133790403/9ed7fc52-9101-46ef-834b-1cc22c6d732e"width="30">:디버깅 및 테스트
 </p>
 
 <p>
- <img src="https://github.com/parkminseok56/phone_fly/assets/133790403/cba9f018-acdc-4556-ba4a-defc9a6ce3d2"width="50">:발표 준비
+ <img src="https://github.com/parkminseok56/phone_fly/assets/133790403/cba9f018-acdc-4556-ba4a-defc9a6ce3d2"width="30">:발표 준비
 </p>
 
 ## 개발 환경
