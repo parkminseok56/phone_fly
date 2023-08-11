@@ -105,6 +105,11 @@ https://github.com/parkminseok56/Communication/blob/main/
  <img src="https://github.com/parkminseok56/phone_fly/assets/133790403/c7acd141-8e61-4ff9-b7e8-ebaddb73b717"width="1000">
 </p>
 
+ - 설계 설명
+    - 제품마다 상이한 종류의 색상을 선택하여 적용을 위해 product 테이블의 고유키를 color 테이블의 참조값을 사용하였습니다
+    - 회원일 경우에만 1대1 문의 사항과 리뷰를 작성할 수 있게 하였습니다.
+    - 상품 테이블에서 주문상세 테이블을 통해 요금제 테이블로 가고 요금제 테이블에서 마지막으로 통신사를 선택할 수 있게 설계하였습니다. 
+    - 관리자일 경우에만 이벤트와 공지사항을 작성할 수 있게 하였습니다.
 
 
 
