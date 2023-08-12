@@ -21,7 +21,7 @@
 ## 요구 사항 분석
 
 - 주요기능
- - 상품 상세보기 옵션 선택시 가격이 자동으로 계산되는가
+ 1. 상품 상세보기 옵션 선택시 가격이 자동으로 계산되는가
  ```java
 // getProduct 메서드: 특정 제품 정보와 관련 정보를 조회하여 반환하는 메서드입니다.
 public HashMap<String, Object> getProduct(int pseq) {
@@ -51,7 +51,7 @@ public HashMap<String, Object> getProduct(int pseq) {
     return result;
 }
 ```
-  - 원하는 상품만 선택하여 비교할 수 있는가
+  2. 원하는 상품만 선택하여 비교할 수 있는가
  ```java
    // productCompare 메서드: 주어진 pseqList에 있는 제품들을 비교하고 관련 정보를 조회하는 메서드입니다.
    public void productCompare(HashMap<String, Object> result) {
