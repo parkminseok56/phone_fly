@@ -1,55 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-
 <mapper namespace="com.ezen.phonefly2.dao.ICommonDao">
 
-	<select id="getNoticeList" resultType="com.ezen.phonefly2.dto.NoticeVO">
-		SELECT * FROM (SELECT * FROM (SELECT ROWNUM rn, N.* FROM (
-		SELECT * FROM notice ORDER BY nseq DESC) N) WHERE rn &gt;= #{startNum}) WHERE rn &lt;= #{endNum}
-	</select>
+    <!-- 주어진 범위에 해당하는 공지사항 목록을 가져오는 쿼리 -->
+    <select id="getNoticeList" resultType="com.ezen.phonefly2.dto.NoticeVO">
+        SELECT * FROM (
+            SELECT * FROM (
+                SELECT ROWNUM rn, N.* FROM (
+                    SELECT * FROM notice ORDER BY nseq DESC
+                ) N
+            ) WHERE rn &gt;= #{startNum}
+        ) WHERE rn &lt;= #{endNum}
+    </select>
 
-	<select id="getNotice" resultType="com.ezen.phonefly2.dto.NoticeVO">
-		SELECT * FROM notice WHERE nseq = #{param1}
-	</select>
+    <!-- 주어진 nseq에 해당하는 공지사항 내용을 가져오는 쿼리 -->
+    <select id="getNotice" resultType="com.ezen.phonefly2.dto.NoticeVO">
+        SELECT * FROM notice WHERE nseq = #{param1}
+    </select>
 
-	<select id="getAllCount" resultType="_int">
-		SELECT COUNT(*) FROM ${param1}
-	</select>
+    <!-- 주어진 테이블 이름에 해당하는 레코드 개수를 가져오는 쿼리 -->
+    <select id="getAllCount" resultType="_int">
+        SELECT COUNT(*) FROM ${param1}
+    </select>
 
-	<select id="getEventList" resultType="com.ezen.phonefly2.dto.EventVO">
-		SELECT * FROM (SELECT * FROM (SELECT ROWNUM rn, E.* FROM (
-		SELECT * FROM event ORDER BY eseq DESC) E) WHERE rn &gt;= #{startNum}) WHERE rn &lt;= #{endNum}
-	</select>
+    <!-- 주어진 범위에 해당하는 이벤트 목록을 가져오는 쿼리 -->
+    <select id="getEventList" resultType="com.ezen.phonefly2.dto.EventVO">
+        SELECT * FROM (
+            SELECT * FROM (
+                SELECT ROWNUM rn, E.* FROM (
+                    SELECT * FROM event ORDER BY eseq DESC
+                ) E
+            ) WHERE rn &gt;= #{startNum}
+        ) WHERE rn &lt;= #{endNum}
+    </select>
 
-	<select id="getEvent" resultType="com.ezen.phonefly2.dto.EventVO">
-		SELECT * FROM event WHERE eseq = #{param1}
-	</select>
-	
-	<insert id="insertNotice" parameterType="com.ezen.phonefly2.dto.NoticeVO" >
-		insert into notice ( nseq, subject , content) 
-		        values( nseq.nextVal, #{subject}, #{content})
-	</insert>
+    <!-- 주어진 eseq에 해당하는 이벤트 내용을 가져오는 쿼리 -->
+    <select id="getEvent" resultType="com.ezen.phonefly2.dto.EventVO">
+        SELECT * FROM event WHERE eseq = #{param1}
+    </select>
+    
+    <!-- 새로운 공지사항을 추가하는 쿼리 -->
+    <insert id="insertNotice" parameterType="com.ezen.phonefly2.dto.NoticeVO" >
+        INSERT INTO notice (nseq, subject, content) 
+        VALUES (nseq.nextVal, #{subject}, #{content})
+    </insert>
 
-
-	<update id="updateNotice" parameterType="com.ezen.phonefly2.dto.NoticeVO">
-		update notice set subject=#{subject},content=#{content} where nseq=#{nseq}
-	</update>
-	
-	<delete id = "deleteNotice">
-		delete from notice where nseq=#{param1}
-	</delete>
-	
-	<insert id="insertEvent" parameterType="com.ezen.phonefly2.dto.EventVO" >
-		insert into event ( eseq, subject , image) 
-		        values( eseq.nextVal, #{subject}, #{image})
-	</insert>
-	
-	<update id="updateEvent" parameterType="com.ezen.phonefly2.dto.EventVO">
-		update event set subject=#{subject},image=#{image} where eseq=#{eseq}
-	</update>
-	
-	<delete id = "deleteEvent">
-		delete from event where eseq=#{param1}
-	</delete>
+    <!-- 주어진 nseq에 해당하는 공지사항 내용을 업데이트하는 쿼리 -->
+    <update id="updateNotice" parameterType="com.ezen.phonefly2.dto.NoticeVO">
+        UPDATE notice SET subject=#{subject}, content=#{content} WHERE nseq=#{nseq}
+    </update>
+    
+    <!-- 주어진 nseq에 해당하는 공지사항을 삭제하는 쿼리 -->
+    <delete id="deleteNotice">
+        DELETE FROM notice WHERE nseq=#{param1}
+    </delete>
+    
+    <!-- 새로운 이벤트를 추가하는 쿼리 -->
+    <insert id="insertEvent" parameterType="com.ezen.phonefly2.dto.EventVO" >
+        INSERT INTO event (eseq, subject, image) 
+        VALUES (eseq.nextVal, #{subject}, #{image})
+    </insert>
+    
+    <!-- 주어진 eseq에 해당하는 이벤트 내용을 업데이트하는 쿼리 -->
+    <update id="updateEvent" parameterType="com.ezen.phonefly2.dto.EventVO">
+        UPDATE event SET subject=#{subject}, image=#{image} WHERE eseq=#{eseq}
+    </update>
+    
+    <!-- 주어진 eseq에 해당하는 이벤트를 삭제하는 쿼리 -->
+    <delete id="deleteEvent">
+        DELETE FROM event WHERE eseq=#{param1}
+    </delete>
+    
 </mapper>
