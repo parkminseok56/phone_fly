@@ -21,8 +21,38 @@
 ## 요구 사항 분석
 
 - 주요기능
-  - 상품 상세보기 옵션 선택이 가능한가
-  ```java
+ - 상품 상세보기 옵션 선택시 가격이 자동으로 계산되는가
+ ```java
+// getProduct 메서드: 특정 제품 정보와 관련 정보를 조회하여 반환하는 메서드입니다.
+public HashMap<String, Object> getProduct(int pseq) {
+    // 결과를 담을 해시맵 객체 생성
+    HashMap<String, Object> result = new HashMap<>();
+    
+    // pdao 객체를 통해 특정 pseq에 해당하는 제품 정보를 조회합니다.
+    ProductVO pvo = pdao.getProduct(pseq);
+    
+    // 조회된 제품 정보가 null이 아닌 경우
+    if (pvo != null) {
+        // mdao 객체를 통해 해당 제품의 색상 정보를 조회합니다.
+        List<ColorVO> colorList = mdao.getColorList(pvo.getPseq());
+        
+        // 조회된 색상 정보를 해당 제품 객체에 설정합니다.
+        pvo.setColorList(colorList);
+        
+        // pdao 객체를 통해 요금제 정보를 조회합니다.
+        List<RplanVO> rplanList = pdao.getRplanList();
+        
+        // 조회된 제품 정보와 요금제 정보를 결과 해시맵에 저장합니다.
+        result.put("productVO", pvo);
+        result.put("rplanList", rplanList);
+    }
+    
+    // 최종 결과 해시맵 반환
+    return result;
+}
+```
+  - 원하는 상품만 선택하여 비교할 수 있는가
+ ```java
    // productCompare 메서드: 주어진 pseqList에 있는 제품들을 비교하고 관련 정보를 조회하는 메서드입니다.
    public void productCompare(HashMap<String, Object> result) {
     // 주어진 결과 맵에서 pseqList를 가져옵니다.
@@ -46,10 +76,7 @@
                 List<ColorVO> colorList = mdao.getColorList(pseq);
                 
                 // 이후 해당 제품 정보 및 색상 정보를 활용하여 필요한 비교와 조회 작업을 수행할 수 있습니다.
-    
-  - 상품 상세보기 옵션 선택시 가격이 자동으로 계산되는가
-  - 원하는 상품만 선택하여 비교할 수 있는가
-
+```
 - 사이트 기본기능
   
 1.회원
