@@ -4,29 +4,40 @@
 
 <mapper namespace="com.ezen.phonefly2.dao.IQnaDao">
 
-	<select id="getAllCountById" resultType="_int">
-		SELECT COUNT(*) FROM qna WHERE id = #{param1}
-	</select>
+<!-- id에 해당하는 레코드 개수를 반환하는 쿼리 -->
+<select id="getAllCountById" resultType="_int">
+    SELECT COUNT(*) FROM qna WHERE id = #{param1}
+</select>
 
-	<select id="qnaList" resultType="com.ezen.phonefly2.dto.QnaVO">
-		SELECT * FROM (SELECT * FROM (SELECT ROWNUM rn, Q.* FROM (
-		SELECT * FROM qna WHERE id = #{param2} ORDER BY qseq DESC) Q) WHERE rn &gt;= #{param1.startNum}) WHERE rn &lt;= #{param1.endNum}
-	</select>
+<!-- 주어진 id에 해당하는 qna 레코드를 페이징 처리와 정렬하여 가져오는 쿼리 -->
+<select id="qnaList" resultType="com.ezen.phonefly2.dto.QnaVO">
+    SELECT * FROM (
+        SELECT * FROM (
+            SELECT ROWNUM rn, Q.* FROM (
+                SELECT * FROM qna WHERE id = #{param2} ORDER BY qseq DESC
+            ) Q
+        ) WHERE rn &gt;= #{param1.startNum}
+    ) WHERE rn &lt;= #{param1.endNum}
+</select>
 
-	<select id="getQna" resultType="com.ezen.phonefly2.dto.QnaVO">
-		SELECT * FROM qna WHERE qseq = #{param1}
-	</select>
+<!-- 주어진 qseq에 해당하는 qna 레코드를 가져오는 쿼리 -->
+<select id="getQna" resultType="com.ezen.phonefly2.dto.QnaVO">
+    SELECT * FROM qna WHERE qseq = #{param1}
+</select>
 
-	<insert id="qnaWrite" parameterType="com.ezen.phonefly2.dto.QnaVO">
-		INSERT INTO qna (qseq, id, subject, content) VALUES (qseq.nextVal, #{id}, #{subject}, #{content})
-	</insert>
+<!-- 새로운 qna 레코드를 삽입하는 쿼리 -->
+<insert id="qnaWrite" parameterType="com.ezen.phonefly2.dto.QnaVO">
+    INSERT INTO qna (qseq, id, subject, content) VALUES (qseq.nextVal, #{id}, #{subject}, #{content})
+</insert>
 
-	<update id="qnaUpdate" parameterType="com.ezen.phonefly2.dto.QnaVO">
-		UPDATE qna SET subject = #{subject}, content = #{content} where qseq = #{qseq}
-	</update>
+<!-- 주어진 qseq에 해당하는 qna 레코드의 제목과 내용을 업데이트하는 쿼리 -->
+<update id="qnaUpdate" parameterType="com.ezen.phonefly2.dto.QnaVO">
+    UPDATE qna SET subject = #{subject}, content = #{content} WHERE qseq = #{qseq}
+</update>
 
-	<delete id="qnaDelete" parameterType="com.ezen.phonefly2.dto.QnaVO">
-		DELETE FROM qna WHERE qseq = #{param1}
-	</delete>
+<!-- 주어진 qseq에 해당하는 qna 레코드를 삭제하는 쿼리 -->
+<delete id="qnaDelete" parameterType="com.ezen.phonefly2.dto.QnaVO">
+    DELETE FROM qna WHERE qseq = #{param1}
+</delete>
 
 </mapper>
