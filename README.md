@@ -1,4 +1,5 @@
 ## Phone fly 팀 프로젝트
+![메인페이지2](https://github.com/parkminseok56/phone_fly/assets/133790403/5c53db08-4f51-4a51-877f-ec2f57dfe0a5)
 
 ## 주제 및 목적
 
