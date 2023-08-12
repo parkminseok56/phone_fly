@@ -117,7 +117,7 @@ public HashMap<String, Object> getProduct(int pseq) {
   - <img src="https://img.shields.io/badge/springboot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white">
   - <img src="https://oopy.lazyrockets.com/api/v2/notion/image?src=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F41857ea2-4aa9-4820-983b-9f9fdd329118%2FUntitled.png&blockId=0cf4d07a-6ed8-4680-acba-295b14863c4b" width="100">
 
-## 작업 일정
+## 작업 일정 및 조원 분배
 
 - 2023.05.16 ~ 06.02
 <p align="center">
@@ -145,7 +145,13 @@ public HashMap<String, Object> getProduct(int pseq) {
  <img src="https://github.com/parkminseok56/phone_fly/assets/133790403/cba9f018-acdc-4556-ba4a-defc9a6ce3d2"width="30">:발표 준비
 </p>
 
-
+- 조원 분배
+  -총 인원 4명으로 프론트앤드,백앤드 큰 구분없이 파트별로 전체적으로 진행됨
+  
+   - 박민석: 사용자 페이지, 관리자 페이지
+   - 이경민: 사용자 페이지, 관리자 페이지
+   - 백현성: 사용자 페이지, 모바일 페이지
+   - 전지웅: 사용자 페이지, DB 데이터 관리
 
 ## 협업 준비 과정
 
