@@ -4,42 +4,62 @@
 
 <mapper namespace="com.ezen.phonefly2.dao.IMyPageDao">
 
-	<select id="getReviewList" resultType="com.ezen.phonefly2.dto.ReviewVO">
-		SELECT * FROM (SELECT * FROM (SELECT ROWNUM rn, N.* FROM (
-		SELECT * FROM review_for_member_view ORDER BY rvseq DESC) N) WHERE rn &gt;= #{startNum}) WHERE rn &lt;= #{endNum}
-	</select>
+<!-- 주어진 범위에 해당하는 리뷰 목록을 가져오는 쿼리 -->
+<select id="getReviewList" resultType="com.ezen.phonefly2.dto.ReviewVO">
+    SELECT * FROM (
+        SELECT * FROM (
+            SELECT ROWNUM rn, N.* FROM (
+                SELECT * FROM review_for_member_view ORDER BY rvseq DESC
+            ) N
+        ) WHERE rn &gt;= #{startNum}
+    ) WHERE rn &lt;= #{endNum}
+</select>
 
-	<update id="updateReview" parameterType="com.ezen.phonefly2.dto.ReviewVO">
-		UPDATE review SET content=#{content} WHERE rvseq = #{rvseq}
-	</update>
+<!-- 주어진 rvseq에 해당하는 리뷰 내용을 업데이트하는 쿼리 -->
+<update id="updateReview" parameterType="com.ezen.phonefly2.dto.ReviewVO">
+    UPDATE review SET content=#{content} WHERE rvseq = #{rvseq}
+</update>
 
-	<delete id="deleteReview">
-		DELETE FROM review WHERE rvseq = #{param1}
-	</delete>
+<!-- 주어진 rvseq에 해당하는 리뷰를 삭제하는 쿼리 -->
+<delete id="deleteReview">
+    DELETE FROM review WHERE rvseq = #{param1}
+</delete>
 
-	<select id="getOrderList" resultType="com.ezen.phonefly2.dto.OrderDetailVO">
-		SELECT * FROM (SELECT * FROM (SELECT ROWNUM rn, O.* FROM (
-		SELECT * FROM order_detail_view2 WHERE id = #{param2} ORDER BY odseq DESC) O) WHERE rn &gt;= #{param1.startNum}) WHERE rn &lt;= #{param1.endNum}
-	</select>
+<!-- 주어진 범위에 해당하는 주문 목록을 가져오는 쿼리 -->
+<select id="getOrderList" resultType="com.ezen.phonefly2.dto.OrderDetailVO">
+    SELECT * FROM (
+        SELECT * FROM (
+            SELECT ROWNUM rn, O.* FROM (
+                SELECT * FROM order_detail_view2 WHERE id = #{param2} ORDER BY odseq DESC
+            ) O
+        ) WHERE rn &gt;= #{param1.startNum}
+    ) WHERE rn &lt;= #{param1.endNum}
+</select>
 
-	<select id="getOrderDetail" resultType="com.ezen.phonefly2.dto.OrderDetailVO">
-		SELECT * FROM order_detail_view2 WHERE odseq = #{param1} AND id = #{param2}
-	</select>
+<!-- 주어진 odseq와 id에 해당하는 주문 상세 정보를 가져오는 쿼리 -->
+<select id="getOrderDetail" resultType="com.ezen.phonefly2.dto.OrderDetailVO">
+    SELECT * FROM order_detail_view2 WHERE odseq = #{param1} AND id = #{param2}
+</select>
 
-	<select id="adminOrderDetail" resultType="com.ezen.phonefly2.dto.OrderDetailVO">
-		SELECT * FROM order_detail_view2 WHERE odseq = #{param1}
-	</select>
+<!-- 주어진 odseq에 해당하는 주문 상세 정보를 관리자용으로 가져오는 쿼리 -->
+<select id="adminOrderDetail" resultType="com.ezen.phonefly2.dto.OrderDetailVO">
+    SELECT * FROM order_detail_view2 WHERE odseq = #{param1}
+</select>
 
-	<delete id="deleteOrder">
-		DELETE FROM order_detail WHERE odseq = #{param1}
-	</delete>
+<!-- 주어진 odseq에 해당하는 주문을 삭제하는 쿼리 -->
+<delete id="deleteOrder">
+    DELETE FROM order_detail WHERE odseq = #{param1}
+</delete>
 
-	<insert id="insertOrder" parameterType="com.ezen.phonefly2.dto.OrderDetailVO">
-		INSERT INTO order_detail (odseq, pseq, rseq, discount, buyplan, dcmonth, dctotal, mmonth, mtotal, cc, id, cseq) VALUES (odseq.nextVal, #{pseq}, #{rseq}, #{discount}, #{buyplan}, #{dcmonth}, #{dctotal}, #{mmonth}, #{mtotal}, #{cc}, #{id}, #{cseq})
-	</insert>
-	
-	<update id="adminOrderUpdate">
-		update order_detail set result = #{param1}  where odseq= #{param2}
-	</update>
+<!-- 새로운 주문을 추가하는 쿼리 -->
+<insert id="insertOrder" parameterType="com.ezen.phonefly2.dto.OrderDetailVO">
+    INSERT INTO order_detail (odseq, pseq, rseq, discount, buyplan, dcmonth, dctotal, mmonth, mtotal, cc, id, cseq) VALUES (odseq.nextVal, #{pseq}, #{rseq}, #{discount}, #{buyplan}, #{dcmonth}, #{dctotal}, #{mmonth}, #{mtotal}, #{cc}, #{id}, #{cseq})
+</insert>
+
+<!-- 관리자가 주문 상태를 업데이트하는 쿼리 -->
+<update id="adminOrderUpdate">
+    UPDATE order_detail SET result = #{param1} WHERE odseq = #{param2}
+</update>
+
 
 </mapper>
