@@ -3,35 +3,44 @@
 
 <mapper namespace="com.ezen.phonefly2.dao.IMemberDao">
 
-	<select id="getMember" resultType="com.ezen.phonefly2.dto.MemberVO">
-		SELECT * FROM member WHERE id = #{param1}
-	</select>
+    <!-- 주어진 id에 해당하는 회원 정보를 가져오는 쿼리 -->
+    <select id="getMember" resultType="com.ezen.phonefly2.dto.MemberVO">
+        SELECT * FROM member WHERE id = #{param1}
+    </select>
 
-	<insert id="joinKakao" parameterType="com.ezen.phonefly2.dto.MemberVO">
-		INSERT INTO member (id, email, name, provider) VALUES (#{id}, #{email}, #{name}, #{provider})
-	</insert>
+    <!-- 카카오로 회원 가입 정보를 추가하는 쿼리 -->
+    <insert id="joinKakao" parameterType="com.ezen.phonefly2.dto.MemberVO">
+        INSERT INTO member (id, email, name, provider) VALUES (#{id}, #{email}, #{name}, #{provider})
+    </insert>
 
-	<insert id="join" parameterType="com.ezen.phonefly2.dto.MemberVO">
-		INSERT INTO member (id, pwd, name, email, zipnum, address1, address2, address3, phone, provider) VALUES (#{id}, #{pwd}, #{name}, #{email}, #{zipnum}, #{address1}, #{address2}, #{address3}, #{phone}, #{provider})
-	</insert>
+    <!-- 일반 회원 가입 정보를 추가하는 쿼리 -->
+    <insert id="join" parameterType="com.ezen.phonefly2.dto.MemberVO">
+        INSERT INTO member (id, pwd, name, email, zipnum, address1, address2, address3, phone, provider) VALUES (#{id}, #{pwd}, #{name}, #{email}, #{zipnum}, #{address1}, #{address2}, #{address3}, #{phone}, #{provider})
+    </insert>
 
-	<update id="memberUpdate" parameterType="com.ezen.phonefly2.dto.MemberVO">
-		UPDATE member SET pwd = #{pwd}, name = #{name}, email = #{email}, zipnum = #{zipnum}, address1 = #{address1}, address2 = #{address2}, address3 = #{address3}, phone = #{phone}, provider = #{provider} WHERE id = #{id}
-	</update>
+    <!-- 회원 정보를 업데이트하는 쿼리 -->
+    <update id="memberUpdate" parameterType="com.ezen.phonefly2.dto.MemberVO">
+        UPDATE member SET pwd = #{pwd}, name = #{name}, email = #{email}, zipnum = #{zipnum}, address1 = #{address1}, address2 = #{address2}, address3 = #{address3}, phone = #{phone}, provider = #{provider} WHERE id = #{id}
+    </update>
 
-	<update id="deleteMember">
-		UPDATE member SET useyn='N' WHERE id = #{param1}
-	</update>
+    <!-- 회원 정보의 useyn 필드를 'N'으로 업데이트하여 회원을 삭제하는 쿼리 -->
+    <update id="deleteMember">
+        UPDATE member SET useyn='N' WHERE id = #{param1}
+    </update>
 
-	<select id="findId">
-		SELECT * FROM member WHERE name = #{param1} AND phone = #{param2}
-	</select>
+    <!-- 주어진 이름과 전화번호로 회원 아이디를 찾는 쿼리 -->
+    <select id="findId">
+        SELECT * FROM member WHERE name = #{param1} AND phone = #{param2}
+    </select>
 
-	<select id="findMember">
-		SELECT COUNT(*) cnt FROM member WHERE id = #{param1} AND name = #{param2} AND phone = #{param3}
-	</select>
+    <!-- 주어진 아이디, 이름, 전화번호로 회원을 찾는 쿼리 -->
+    <select id="findMember">
+        SELECT COUNT(*) cnt FROM member WHERE id = #{param1} AND name = #{param2} AND phone = #{param3}
+    </select>
 
-	<update id="setNewPwd">
-		UPDATE member SET pwd = #{param2} WHERE id = #{param1}
-	</update>
+    <!-- 주어진 아이디에 새로운 비밀번호를 설정하는 쿼리 -->
+    <update id="setNewPwd">
+        UPDATE member SET pwd = #{param2} WHERE id = #{param1}
+    </update>
+
 </mapper>
