@@ -22,7 +22,7 @@
 ## 요구 사항 분석
 
 - 주요기능
- 1. 상품 상세보기 옵션 선택시 가격이 자동으로 계산되는가
+ 1. 상품 상세보기 옵션 선택시 기종마다  다른  통신사 요금제 가격이 계산되는가
  ```java
 // getProduct 메서드: 특정 제품 정보와 관련 정보를 조회하여 반환하는 메서드입니다.
 public HashMap<String, Object> getProduct(int pseq) {
