@@ -22,6 +22,34 @@
 
 - 주요기능
   - 상품 상세보기 옵션 선택이 가능한가
+  ```java
+   // productCompare 메서드: 주어진 pseqList에 있는 제품들을 비교하고 관련 정보를 조회하는 메서드입니다.
+   public void productCompare(HashMap<String, Object> result) {
+    // 주어진 결과 맵에서 pseqList를 가져옵니다.
+    List<Integer> pseqList = (List<Integer>) result.get("pseqList");
+    
+    // 비교할 제품 정보들을 담을 리스트를 생성합니다.
+    List<ProductVO> productList = new ArrayList<>();
+    
+    // 제품 비교 플래그를 초기화합니다.
+    int compareFlag = 1;
+
+    // pseqList가 null이 아닌 경우에만 제품 정보를 비교 및 조회합니다.
+    if (pseqList != null) {
+        for (Integer pseq : pseqList) {
+            // pdao 객체를 통해 특정 pseq에 해당하는 제품 정보를 조회합니다.
+            ProductVO pvo = pdao.getProduct(pseq);
+            
+            // 조회된 제품 정보가 null이 아닌 경우
+            if (pvo != null) {
+                // mdao 객체를 통해 해당 제품의 색상 정보를 조회합니다.
+                List<ColorVO> colorList = mdao.getColorList(pseq);
+                
+                // 이후 해당 제품 정보 및 색상 정보를 활용하여 필요한 비교와 조회 작업을 수행할 수 있습니다.
+            }
+        }
+    }
+}
   - 상품 상세보기 옵션 선택시 가격이 자동으로 계산되는가
   - 원하는 상품만 선택하여 비교할 수 있는가
 
