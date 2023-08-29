@@ -51,7 +51,7 @@ public HashMap<String, Object> getProduct(int pseq) {
     // 최종 결과 해시맵 반환
     return result;
 }
-```
+``` 
   2. 원하는 상품만 선택하여 비교할 수 있는가
  ```java
    // productCompare 메서드: 주어진 pseqList에 있는 제품들을 비교하고 관련 정보를 조회하는 메서드입니다.
